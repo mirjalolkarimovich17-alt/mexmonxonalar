@@ -1,0 +1,355 @@
+﻿<!DOCTYPE html>
+<html lang="uz">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Xonalar — LuxHotel</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"/>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+<link href="https://fonts.googleapis.com/css2?family=Inter+Tight:wght@400;500;600;700;800&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet"/>
+<link rel="stylesheet" href="https://iconsax.gitlab.io/i/icons.css"/>
+<link rel="stylesheet" href="animate.css"/>
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{--navy:#0e2a4d;--primary:#1e4a8a;--muted:#5b6b80;--soft:#eef3fa}
+html{scroll-behavior:smooth;background:#cdd9ec}
+body{min-height:100vh;background:linear-gradient(160deg,#e8eef7 0%,#cdd9ec 60%,#c4d3e8 100%) fixed;background-color:#cdd9ec;color:var(--navy);font-family:"Inter Tight","Inter",system-ui,sans-serif;-webkit-font-smoothing:antialiased;overflow-x:hidden}
+img{max-width:100%;display:block}
+a{color:inherit;text-decoration:none}
+.container{max-width:1240px;margin:0 auto;padding:0 24px}
+.nav-wrap{position:sticky;top:16px;z-index:100;padding:16px 24px 0}
+.nav{max-width:1240px;margin:0 auto;background:#fff;border-radius:16px;padding:14px 22px;display:flex;align-items:center;justify-content:space-between;box-shadow:0 8px 24px rgba(14,42,77,.08)}
+.brand{font-weight:800;font-size:18px;color:var(--navy)}
+.nav-links{display:flex;gap:24px}
+.nav-links a{font-size:14px;font-weight:500;color:var(--muted);transition:.2s;display:flex;align-items:center;gap:6px;padding:8px 12px;border-radius:8px}.nav-links a:hover{background:var(--soft)}
+.nav-links a:hover,.nav-links a.active{color:var(--navy)}
+.btn{display:inline-flex;align-items:center;justify-content:center;border-radius:10px;padding:10px 20px;font-weight:600;font-size:14px;border:1px solid transparent;cursor:pointer;transition:.2s;font-family:inherit}
+.btn-primary{background:var(--primary);color:#fff}
+.btn-primary:hover{background:#173f78;transform:translateY(-1px)}
+.btn-outline{background:#fff;color:var(--navy);border-color:#e3e8ef}
+.btn-outline:hover{border-color:var(--primary);color:var(--primary)}
+.hamburger{display:none;flex-direction:column;gap:5px;cursor:pointer;padding:6px;background:var(--primary);border-radius:10px;border:none}
+.hamburger span{display:block;width:20px;height:2px;background:#fff;transition:.3s}
+.hamburger.open span:nth-child(1){transform:translateY(7px) rotate(45deg)}
+.hamburger.open span:nth-child(2){opacity:0}
+.hamburger.open span:nth-child(3){transform:translateY(-7px) rotate(-45deg)}
+.mobile-menu{display:none;position:fixed;inset:0;background:rgba(14,42,77,.6);backdrop-filter:blur(4px);z-index:99;opacity:0;transition:opacity .3s}
+.mobile-menu.open{opacity:1}
+.mobile-menu-panel{position:absolute;top:0;right:0;width:280px;height:100%;background:#fff;padding:80px 32px 32px;display:flex;flex-direction:column;gap:20px;transform:translateX(100%);transition:transform .35s cubic-bezier(.4,0,.2,1)}
+.mobile-menu.open .mobile-menu-panel{transform:translateX(0)}
+.mobile-menu-panel a{font-size:18px;font-weight:600;color:var(--navy);padding:10px 0;border-bottom:1px solid #eef2f7}
+.mobile-menu-panel .btn{margin-top:10px;width:100%}
+.page-hero{padding:80px 0 60px;text-align:center}
+.eyebrow{color:var(--primary);font-weight:600;font-size:13px;letter-spacing:.08em;text-transform:uppercase;margin-bottom:12px}
+.h2{font-size:clamp(28px,4vw,48px);font-weight:800;line-height:1.1;letter-spacing:-.025em;color:var(--navy)}
+.block{padding:80px 0}
+/* FILTER TABS */
+.filter-bar{display:flex;gap:10px;flex-wrap:wrap;margin-bottom:40px;justify-content:center}
+.filter-btn{border:1.5px solid #e3e8ef;background:#fff;border-radius:24px;padding:9px 20px;font-size:14px;font-weight:600;color:var(--muted);cursor:pointer;transition:.2s;font-family:inherit}
+.filter-btn:hover{border-color:var(--primary);color:var(--primary)}
+.filter-btn.active{background:var(--primary);border-color:var(--primary);color:#fff}
+/* ROOM CARDS */
+.rooms-list{display:flex;flex-direction:column;gap:40px}
+.room-card{background:#fff;border-radius:24px;overflow:hidden;box-shadow:0 10px 36px rgba(14,42,77,.08);display:grid;grid-template-columns:480px 1fr;transition:box-shadow .3s}
+.room-card:hover{box-shadow:0 20px 60px rgba(14,42,77,.14)}
+.room-card .img{position:relative;overflow:hidden}
+.room-card .img img{width:100%;height:100%;object-fit:cover;transition:.5s;min-height:320px}
+.room-card:hover .img img{transform:scale(1.05)}
+.room-card .badge{position:absolute;top:16px;left:16px;background:var(--primary);color:#fff;font-size:12px;font-weight:700;padding:6px 14px;border-radius:20px;display:flex;align-items:center;gap:6px}
+.room-card .badge .iconsax{font-size:14px}
+.room-card .body{padding:36px;display:flex;flex-direction:column;justify-content:space-between}
+.room-card .body h3{font-size:28px;font-weight:800;color:var(--navy);margin-bottom:10px}
+.room-card .body p{color:var(--muted);font-size:16px;line-height:1.6;margin-bottom:20px}
+.amenities{display:flex;flex-wrap:wrap;gap:10px;margin-bottom:24px}
+.amenity{display:flex;align-items:center;gap:6px;background:var(--soft);border-radius:20px;padding:6px 14px;font-size:13px;font-weight:500;color:var(--navy)}
+.amenity .iconsax{font-size:16px;color:var(--primary);flex-shrink:0}
+.price-row{display:flex;align-items:center;justify-content:space-between;padding-top:20px;border-top:1px solid #eef2f7}
+.price{font-size:32px;font-weight:800;color:var(--navy)}
+.price small{font-size:15px;font-weight:400;color:var(--muted)}
+.stars{color:#f59e0b;font-size:15px;letter-spacing:2px}
+/* REVEAL */
+.reveal{opacity:0;transform:translateY(36px);transition:opacity .7s ease,transform .7s ease}
+.reveal.visible{opacity:1;transform:translateY(0)}
+.cta-section{background:var(--navy);color:#fff;border-radius:28px;padding:70px 40px;text-align:center}
+.cta-section h2{font-size:clamp(28px,4vw,46px);font-weight:800;max-width:600px;margin:0 auto 26px;line-height:1.1}
+footer{padding:50px 0 28px}
+.footer-grid{display:grid;grid-template-columns:2fr 1fr 1fr;gap:48px;margin-bottom:40px}
+.footer-brand{font-weight:800;font-size:20px;color:var(--navy);margin-bottom:10px}
+.footer-desc{color:var(--muted);font-size:15px;line-height:1.6;max-width:300px}
+.footer-col h4{font-size:13px;font-weight:700;color:var(--navy);text-transform:uppercase;letter-spacing:.06em;margin-bottom:14px}
+.footer-col a{display:block;color:var(--muted);font-size:15px;margin-bottom:10px;transition:color .2s}
+.footer-col a:hover{color:var(--primary)}
+.footer-bottom{border-top:1px solid #e3e8ef;padding-top:22px;display:flex;justify-content:space-between}
+.footer-bottom p{color:var(--muted);font-size:14px}
+@media(max-width:1000px){.room-card{grid-template-columns:1fr}.room-card .img img{min-height:260px;height:260px}}
+@media(max-width:900px){.footer-grid{grid-template-columns:1fr 1fr}.nav-links{display:none}.hamburger{display:flex}.mobile-menu{display:block}}
+@media(max-width:600px){.footer-grid{grid-template-columns:1fr}.footer-bottom{flex-direction:column;gap:6px}.room-card .body{padding:22px}.price{font-size:26px}}
+</style>
+</head>
+<body>
+
+<div class="mobile-menu" id="mobileMenu">
+  <div class="mobile-menu-panel">
+    <a href="about.html" onclick="closeMenu()"><i class="iconsax" icon-name="info-circle"></i>Biz haqimizda</a>
+    <a href="services.html" onclick="closeMenu()"><i class="iconsax" icon-name="briefcase"></i>Xizmatlar</a>
+    <a href="rooms.html" onclick="closeMenu()"><i class="iconsax" icon-name="home-2"></i>Xonalar</a>
+    <a href="faq.html" onclick="closeMenu()"><i class="iconsax" icon-name="message-question"></i>Savol-Javob</a>
+    <a href="index.html#booking" class="btn btn-primary" onclick="closeMenu()"><i class="iconsax" icon-name="calendar-1"></i>Bron Qilish</a>
+  </div>
+</div>
+
+<div class="nav-wrap">
+  <nav class="nav" id="mainNav">
+    <a href="index.html" class="brand">✦ LuxHotel</a>
+    <div class="nav-links">
+      <a href="about.html"><i class="iconsax" icon-name="info-circle"></i>Biz haqimizda</a>
+      <a href="services.html"><i class="iconsax" icon-name="briefcase"></i>Xizmatlar</a>
+      <a href="rooms.html" class="active"><i class="iconsax" icon-name="home-2"></i>Xonalar</a>
+      <a href="faq.html"><i class="iconsax" icon-name="message-question"></i>Savol-Javob</a>
+    </div>
+    <div style="display:flex;gap:10px;align-items:center">
+      <a href="index.html#booking" class="btn btn-primary"><i class="iconsax" icon-name="calendar-1"></i>Bron Qilish</a>
+      <button class="hamburger" id="hamburger" onclick="toggleMenu()"><span></span><span></span><span></span></button>
+    </div>
+  </nav>
+</div>
+
+<div class="page-hero">
+  <div class="container">
+    <div class="eyebrow">Bizning Xonalar</div>
+    <h1 style="font-size:clamp(38px,6vw,80px);font-weight:800;line-height:1.05;letter-spacing:-.03em;color:var(--navy)">Hashamatli Xonalar<br/>& Suitelar</h1>
+    <p style="max-width:600px;margin:18px auto 0;color:var(--muted);font-size:17px;line-height:1.6">Qulaylik va nafislik uyg'unlashgan xonalarimiz — sizning dam olish joyingiz.</p>
+  </div>
+</div>
+
+<section class="block">
+  <div class="container">
+    <div class="filter-bar">
+      <button class="filter-btn active" onclick="filterRooms('all',this)">Hammasi</button>
+      <button class="filter-btn" onclick="filterRooms('suite',this)">Suitelar</button>
+      <button class="filter-btn" onclick="filterRooms('standard',this)">Standart</button>
+      <button class="filter-btn" onclick="filterRooms('family',this)">Oilaviy</button>
+    </div>
+
+    <div class="rooms-list" id="roomsList">
+
+      <div class="room-card tilt" data-anim="up" data-type="suite">
+        <div class="img parallax-wrap">
+          <img src="https://images.unsplash.com/photo-1631049307264-da0ec9d70304?w=700&q=80" alt="Qirollik Suite"/>
+          <div class="badge"><i class="iconsax" icon-name="star-1"></i> Eng Mashhur</div>
+        </div>
+        <div class="body">
+          <div>
+            <div class="stars">★★★★★</div>
+            <h3>Qirollik Suite</h3>
+            <p>Bizning eng hashamatli suitamiz — alohida yotoqxona, katta mehmonxona, oshxona va 180° panoramik ko'rinish bilan. Har bir tafsilot mukammal.</p>
+            <div class="amenities">
+              <span class="amenity"><i class="iconsax" icon-name="moon"></i> King bed</span>
+              <span class="amenity"><i class="iconsax" icon-name="drop"></i> Jacuzzi</span>
+              <span class="amenity"><i class="iconsax" icon-name="maximize-3"></i> 120 m²</span>
+              <span class="amenity"><i class="iconsax" icon-name="sun-1"></i> Panorama</span>
+              <span class="amenity"><i class="iconsax" icon-name="cup"></i> Mini bar</span>
+              <span class="amenity"><i class="iconsax" icon-name="wifi"></i> Wi-Fi</span>
+            </div>
+          </div>
+          <div class="price-row">
+            <div class="price">$450 <small>/ tun</small></div>
+            <a href="index.html#booking" class="btn btn-primary"><i class="iconsax" icon-name="calendar-1"></i>Bron Qilish</a>
+          </div>
+        </div>
+      </div>
+
+      <div class="room-card tilt" data-anim="up" data-type="suite">
+        <div class="img parallax-wrap">
+          <img src="https://images.unsplash.com/photo-1571003123894-1f0594d2b5d9?w=700&q=80" alt="Spa Suite"/>
+          <div class="badge"><i class="iconsax" icon-name="health"></i> Spa Suite</div>
+        </div>
+        <div class="body">
+          <div>
+            <div class="stars">★★★★★</div>
+            <h3>Spa Suite</h3>
+            <p>Xonada shaxsiy hammom, sauna va relaksatsiya maydoni mavjud. Spa xizmatlaridan chiqmasdan foydalanish imkoniyati — to'liq ramol oling.</p>
+            <div class="amenities">
+              <span class="amenity"><i class="iconsax" icon-name="moon"></i> King bed</span>
+              <span class="amenity"><i class="iconsax" icon-name="health"></i> Sauna</span>
+              <span class="amenity"><i class="iconsax" icon-name="maximize-3"></i> 95 m²</span>
+              <span class="amenity"><i class="iconsax" icon-name="drop"></i> Hammom</span>
+              <span class="amenity"><i class="iconsax" icon-name="wind-2"></i> Aromater.</span>
+              <span class="amenity"><i class="iconsax" icon-name="wifi"></i> Wi-Fi</span>
+            </div>
+          </div>
+          <div class="price-row">
+            <div class="price">$380 <small>/ tun</small></div>
+            <a href="index.html#booking" class="btn btn-primary"><i class="iconsax" icon-name="calendar-1"></i>Bron Qilish</a>
+          </div>
+        </div>
+      </div>
+
+      <div class="room-card tilt" data-anim="up" data-type="suite">
+        <div class="img parallax-wrap">
+          <img src="https://images.unsplash.com/photo-1582719478250-c89cae4dc85b?w=700&q=80" alt="Burchak Suite"/>
+        </div>
+        <div class="body">
+          <div>
+            <div class="stars">★★★★★</div>
+            <h3>Burchak Suite</h3>
+            <p>Ikkita tomondan panoramik oyna — shaharning eng go'zal manzarasini ko'ring. Keng mehmonxona va zamonaviy dizayn bilan bezatilgan.</p>
+            <div class="amenities">
+              <span class="amenity"><i class="iconsax" icon-name="moon"></i> King bed</span>
+              <span class="amenity"><i class="iconsax" icon-name="buildings-2"></i> City view</span>
+              <span class="amenity"><i class="iconsax" icon-name="maximize-3"></i> 85 m²</span>
+              <span class="amenity"><i class="iconsax" icon-name="drop"></i> Bathtub</span>
+              <span class="amenity"><i class="iconsax" icon-name="cup"></i> Mini bar</span>
+              <span class="amenity"><i class="iconsax" icon-name="wifi"></i> Wi-Fi</span>
+            </div>
+          </div>
+          <div class="price-row">
+            <div class="price">$320 <small>/ tun</small></div>
+            <a href="index.html#booking" class="btn btn-primary"><i class="iconsax" icon-name="calendar-1"></i>Bron Qilish</a>
+          </div>
+        </div>
+      </div>
+
+      <div class="room-card tilt" data-anim="up" data-type="standard">
+        <div class="img parallax-wrap">
+          <img src="https://images.unsplash.com/photo-1618773928121-c32242e63f39?w=700&q=80" alt="Junior Suite"/>
+        </div>
+        <div class="body">
+          <div>
+            <div class="stars">★★★★★</div>
+            <h3>Junior Suite</h3>
+            <p>Hashamat va qulaylik muvozanati. Keng yotoq va alohida ish stoli bilan biznes sayohat uchun ideal tanlov.</p>
+            <div class="amenities">
+              <span class="amenity"><i class="iconsax" icon-name="moon"></i> Queen bed</span>
+              <span class="amenity"><i class="iconsax" icon-name="briefcase"></i> Desk</span>
+              <span class="amenity"><i class="iconsax" icon-name="maximize-3"></i> 60 m²</span>
+              <span class="amenity"><i class="iconsax" icon-name="drop"></i> Shower</span>
+              <span class="amenity"><i class="iconsax" icon-name="cup"></i> Mini bar</span>
+              <span class="amenity"><i class="iconsax" icon-name="wifi"></i> Wi-Fi</span>
+            </div>
+          </div>
+          <div class="price-row">
+            <div class="price">$280 <small>/ tun</small></div>
+            <a href="index.html#booking" class="btn btn-primary"><i class="iconsax" icon-name="calendar-1"></i>Bron Qilish</a>
+          </div>
+        </div>
+      </div>
+
+      <div class="room-card tilt" data-anim="up" data-type="standard">
+        <div class="img parallax-wrap">
+          <img src="https://images.unsplash.com/photo-1595576508898-0ad5c879a061?w=700&q=80" alt="King Bedroom"/>
+        </div>
+        <div class="body">
+          <div>
+            <div class="stars">★★★★☆</div>
+            <h3>King Xonasi</h3>
+            <p>Keng king size karavot, zamonaviy hammom va shaharga qaragan manzarali deraza. Dam olish uchun to'liq qulaylik.</p>
+            <div class="amenities">
+              <span class="amenity"><i class="iconsax" icon-name="moon"></i> King bed</span>
+              <span class="amenity"><i class="iconsax" icon-name="buildings-2"></i> City view</span>
+              <span class="amenity"><i class="iconsax" icon-name="maximize-3"></i> 45 m²</span>
+              <span class="amenity"><i class="iconsax" icon-name="drop"></i> Shower</span>
+              <span class="amenity"><i class="iconsax" icon-name="monitor"></i> Smart TV</span>
+              <span class="amenity"><i class="iconsax" icon-name="wifi"></i> Wi-Fi</span>
+            </div>
+          </div>
+          <div class="price-row">
+            <div class="price">$220 <small>/ tun</small></div>
+            <a href="index.html#booking" class="btn btn-primary"><i class="iconsax" icon-name="calendar-1"></i>Bron Qilish</a>
+          </div>
+        </div>
+      </div>
+
+      <div class="room-card tilt" data-anim="up" data-type="family">
+        <div class="img parallax-wrap">
+          <img src="https://images.unsplash.com/photo-1631049421450-348ccd7f8949?w=700&q=80" alt="Deluxe Twin"/>
+          <div class="badge"><i class="iconsax" icon-name="people"></i> Oilaviy</div>
+        </div>
+        <div class="body">
+          <div>
+            <div class="stars">★★★★☆</div>
+            <h3>Deluxe Twin</h3>
+            <p>Ikki alohida karavot, keng maydoni va oilalar uchun maxsus jihozlar. Bolalar uchun qo'shimcha to'shak bepul.</p>
+            <div class="amenities">
+              <span class="amenity"><i class="iconsax" icon-name="moon"></i> 2 Twin beds</span>
+              <span class="amenity"><i class="iconsax" icon-name="people"></i> Child-friendly</span>
+              <span class="amenity"><i class="iconsax" icon-name="maximize-3"></i> 55 m²</span>
+              <span class="amenity"><i class="iconsax" icon-name="drop"></i> Shower</span>
+              <span class="amenity"><i class="iconsax" icon-name="monitor"></i> Smart TV</span>
+              <span class="amenity"><i class="iconsax" icon-name="wifi"></i> Wi-Fi</span>
+            </div>
+          </div>
+          <div class="price-row">
+            <div class="price">$180 <small>/ tun</small></div>
+            <a href="index.html#booking" class="btn btn-primary"><i class="iconsax" icon-name="calendar-1"></i>Bron Qilish</a>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<section class="block" style="padding-top:0">
+  <div class="container">
+    <div class="cta-section reveal">
+      <div class="eyebrow" style="color:#a8b8cf">Ideal Xonangiz</div>
+      <h2>O'zingizga mos xonani toping va bugun bron qiling</h2>
+      <div style="display:flex;gap:14px;justify-content:center;flex-wrap:wrap">
+        <a href="index.html#booking" class="btn btn-outline"><i class="iconsax" icon-name="calendar-1"></i>Bron Qilish</a>
+        <a href="services.html" class="btn" style="background:rgba(255,255,255,.1);color:#fff;border-color:rgba(255,255,255,.3)">Xizmatlarni Ko'rish</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="container">
+    <div class="footer-grid">
+      <div>
+        <div class="footer-brand">✦ LuxHotel</div>
+        <p class="footer-desc">2004 yildan beri jahon darajasidagi xizmat va o'ziga xos qulaylik.</p>
+      </div>
+      <div class="footer-col">
+        <h4>Sahifalar</h4>
+        <a href="about.html"><i class="iconsax" icon-name="info-circle"></i>Biz haqimizda</a>
+        <a href="services.html"><i class="iconsax" icon-name="briefcase"></i>Xizmatlar</a>
+        <a href="rooms.html"><i class="iconsax" icon-name="home-2"></i>Xonalar</a>
+        <a href="faq.html"><i class="iconsax" icon-name="message-question"></i>Savol-Javob</a>
+      </div>
+      <div class="footer-col">
+        <h4>Aloqa</h4>
+        <a href="#">Grand Avenue, 123</a>
+        <a href="tel:+1234567890">+1 (234) 567-890</a>
+        <a href="mailto:info@luxhotel.com">info@luxhotel.com</a>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p>© 2024 LuxHotel. Barcha huquqlar himoyalangan.</p>
+      <p>Maxfiylik Siyosati · Foydalanish Shartlari</p>
+    </div>
+  </div>
+</footer>
+
+<script src="animate.js"></script>
+<script>
+function toggleMenu(){const m=document.getElementById('mobileMenu'),h=document.getElementById('hamburger');m.classList.toggle('open');h.classList.toggle('open');document.body.style.overflow=m.classList.contains('open')?'hidden':'';}
+function closeMenu(){const m=document.getElementById('mobileMenu'),h=document.getElementById('hamburger');m.classList.remove('open');h.classList.remove('open');document.body.style.overflow='';}
+document.getElementById('mobileMenu').addEventListener('click',function(e){if(e.target===this)closeMenu();});
+const ro=new IntersectionObserver(e=>{e.forEach(x=>{if(x.isIntersecting){x.target.classList.add('visible');ro.unobserve(x.target);}});},{threshold:.1});
+document.querySelectorAll('.reveal').forEach(el=>ro.observe(el));
+function filterRooms(type,btn){
+  document.querySelectorAll('.filter-btn').forEach(b=>b.classList.remove('active'));
+  btn.classList.add('active');
+  document.querySelectorAll('.room-card').forEach(card=>{
+    if(type==='all'||card.dataset.type===type){card.style.display='grid';}
+    else{card.style.display='none';}
+  });
+}
+</script>
+</body>
+</html>
+
+
+
+

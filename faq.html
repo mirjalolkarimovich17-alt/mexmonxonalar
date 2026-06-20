@@ -1,0 +1,288 @@
+﻿<!DOCTYPE html>
+<html lang="uz">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Savol-Javob — LuxHotel</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"/>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+<link href="https://fonts.googleapis.com/css2?family=Inter+Tight:wght@400;500;600;700;800&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet"/>
+<link rel="stylesheet" href="https://iconsax.gitlab.io/i/icons.css"/>
+<link rel="stylesheet" href="animate.css"/>
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{--navy:#0e2a4d;--primary:#1e4a8a;--muted:#5b6b80;--soft:#eef3fa}
+html{scroll-behavior:smooth;background:#cdd9ec}
+body{min-height:100vh;background:linear-gradient(160deg,#e8eef7 0%,#cdd9ec 60%,#c4d3e8 100%) fixed;background-color:#cdd9ec;color:var(--navy);font-family:"Inter Tight","Inter",system-ui,sans-serif;-webkit-font-smoothing:antialiased;overflow-x:hidden}
+img{max-width:100%;display:block}
+a{color:inherit;text-decoration:none}
+.container{max-width:1240px;margin:0 auto;padding:0 24px}
+.nav-wrap{position:sticky;top:16px;z-index:100;padding:16px 24px 0}
+.nav{max-width:1240px;margin:0 auto;background:#fff;border-radius:16px;padding:14px 22px;display:flex;align-items:center;justify-content:space-between;box-shadow:0 8px 24px rgba(14,42,77,.08)}
+.brand{font-weight:800;font-size:18px;color:var(--navy)}
+.nav-links{display:flex;gap:24px}
+.nav-links a{font-size:14px;font-weight:500;color:var(--muted);transition:.2s;display:flex;align-items:center;gap:6px;padding:8px 12px;border-radius:8px}.nav-links a:hover{background:var(--soft)}
+.nav-links a:hover,.nav-links a.active{color:var(--navy)}
+.btn{display:inline-flex;align-items:center;justify-content:center;border-radius:10px;padding:10px 20px;font-weight:600;font-size:14px;border:1px solid transparent;cursor:pointer;transition:.2s;font-family:inherit}
+.btn-primary{background:var(--primary);color:#fff}
+.btn-primary:hover{background:#173f78;transform:translateY(-1px)}
+.btn-outline{background:#fff;color:var(--navy);border-color:#e3e8ef}
+.hamburger{display:none;flex-direction:column;gap:5px;cursor:pointer;padding:6px;background:var(--primary);border-radius:10px;border:none}
+.hamburger span{display:block;width:20px;height:2px;background:#fff;transition:.3s}
+.hamburger.open span:nth-child(1){transform:translateY(7px) rotate(45deg)}
+.hamburger.open span:nth-child(2){opacity:0}
+.hamburger.open span:nth-child(3){transform:translateY(-7px) rotate(-45deg)}
+.mobile-menu{display:none;position:fixed;inset:0;background:rgba(14,42,77,.6);backdrop-filter:blur(4px);z-index:99;opacity:0;transition:opacity .3s}
+.mobile-menu.open{opacity:1}
+.mobile-menu-panel{position:absolute;top:0;right:0;width:280px;height:100%;background:#fff;padding:80px 32px 32px;display:flex;flex-direction:column;gap:20px;transform:translateX(100%);transition:transform .35s cubic-bezier(.4,0,.2,1)}
+.mobile-menu.open .mobile-menu-panel{transform:translateX(0)}
+.mobile-menu-panel a{font-size:18px;font-weight:600;color:var(--navy);padding:10px 0;border-bottom:1px solid #eef2f7}
+.mobile-menu-panel .btn{margin-top:10px;width:100%}
+/* PAGE */
+.page-hero{padding:80px 0 60px;text-align:center}
+.eyebrow{color:var(--primary);font-weight:600;font-size:13px;letter-spacing:.08em;text-transform:uppercase;margin-bottom:12px}
+.h2{font-size:clamp(28px,4vw,48px);font-weight:800;line-height:1.1;letter-spacing:-.025em;color:var(--navy)}
+.block{padding:80px 0}
+/* TABS */
+.tabs-bar{display:flex;gap:8px;flex-wrap:wrap;justify-content:center;margin-bottom:40px}
+.tab-btn{border:1.5px solid #e3e8ef;background:#fff;border-radius:24px;padding:10px 22px;font-size:14px;font-weight:600;color:var(--muted);cursor:pointer;transition:.2s;font-family:inherit;display:inline-flex;align-items:center;gap:6px}
+.tab-btn .iconsax{font-size:16px}
+.tab-btn:hover{border-color:var(--primary);color:var(--primary)}
+.tab-btn.active{background:var(--primary);border-color:var(--primary);color:#fff}
+.tab-panel{display:none}
+.tab-panel.active{display:block}
+/* FAQ */
+.faq-list{max-width:860px;margin:0 auto;display:flex;flex-direction:column;gap:12px}
+.faq-item{background:#fff;border-radius:16px;overflow:hidden;box-shadow:0 4px 16px rgba(14,42,77,.06);transition:box-shadow .3s}
+.faq-item.open{box-shadow:0 8px 28px rgba(14,42,77,.1)}
+.faq-q{width:100%;background:none;border:none;padding:22px 24px;display:flex;justify-content:space-between;align-items:center;font-size:17px;color:var(--navy);font-weight:600;cursor:pointer;text-align:left;font-family:inherit;gap:16px}
+.faq-icon{width:30px;height:30px;border-radius:50%;background:var(--soft);display:flex;align-items:center;justify-content:center;color:var(--primary);font-size:20px;flex-shrink:0;transition:.3s;line-height:1}
+.faq-item.open .faq-icon{background:var(--primary);color:#fff;transform:rotate(45deg)}
+.faq-a{max-height:0;overflow:hidden;transition:max-height .35s ease}
+.faq-a p{padding:0 24px 22px;color:var(--muted);line-height:1.7;font-size:16px}
+.faq-item.open .faq-a{max-height:300px}
+/* CONTACT CARDS */
+.contact-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:24px;max-width:860px;margin:0 auto}
+.contact-card{background:#fff;border-radius:20px;padding:32px;text-align:center;box-shadow:0 6px 20px rgba(14,42,77,.07)}
+.contact-icon{font-size:36px;margin-bottom:14px}
+.contact-card h4{font-size:18px;font-weight:700;color:var(--navy);margin-bottom:8px}
+.contact-card p{color:var(--muted);font-size:15px;line-height:1.5;margin-bottom:16px}
+.contact-card a.link{color:var(--primary);font-weight:600;font-size:15px}
+/* REVEAL */
+.reveal{opacity:0;transform:translateY(30px);transition:opacity .7s,transform .7s}
+.reveal.visible{opacity:1;transform:translateY(0)}
+/* CTA */
+.cta-section{background:var(--navy);color:#fff;border-radius:28px;padding:70px 40px;text-align:center}
+.cta-section h2{font-size:clamp(28px,4vw,46px);font-weight:800;max-width:600px;margin:0 auto 26px;line-height:1.1}
+footer{padding:50px 0 28px}
+.footer-grid{display:grid;grid-template-columns:2fr 1fr 1fr;gap:48px;margin-bottom:40px}
+.footer-brand{font-weight:800;font-size:20px;color:var(--navy);margin-bottom:10px}
+.footer-desc{color:var(--muted);font-size:15px;line-height:1.6;max-width:300px}
+.footer-col h4{font-size:13px;font-weight:700;color:var(--navy);text-transform:uppercase;letter-spacing:.06em;margin-bottom:14px}
+.footer-col a{display:block;color:var(--muted);font-size:15px;margin-bottom:10px;transition:color .2s}
+.footer-col a:hover{color:var(--primary)}
+.footer-bottom{border-top:1px solid #e3e8ef;padding-top:22px;display:flex;justify-content:space-between}
+.footer-bottom p{color:var(--muted);font-size:14px}
+@media(max-width:900px){.contact-grid{grid-template-columns:1fr}.footer-grid{grid-template-columns:1fr 1fr}.nav-links{display:none}.hamburger{display:flex}.mobile-menu{display:block}}
+@media(max-width:600px){.footer-grid{grid-template-columns:1fr}.footer-bottom{flex-direction:column;gap:6px}}
+</style>
+</head>
+<body>
+
+
+<div class="mobile-menu" id="mobileMenu">
+  <div class="mobile-menu-panel">
+    <a href="about.html" onclick="closeMenu()"><i class="iconsax" icon-name="info-circle"></i>Biz haqimizda</a>
+    <a href="services.html" onclick="closeMenu()"><i class="iconsax" icon-name="briefcase"></i>Xizmatlar</a>
+    <a href="rooms.html" onclick="closeMenu()"><i class="iconsax" icon-name="home-2"></i>Xonalar</a>
+    <a href="faq.html" onclick="closeMenu()"><i class="iconsax" icon-name="message-question"></i>Savol-Javob</a>
+    <a href="index.html#booking" class="btn btn-primary" onclick="closeMenu()"><i class="iconsax" icon-name="calendar-1"></i>Bron Qilish</a>
+  </div>
+</div>
+
+<div class="nav-wrap">
+  <nav class="nav" id="mainNav">
+    <a href="index.html" class="brand">✦ LuxHotel</a>
+    <div class="nav-links">
+      <a href="about.html"><i class="iconsax" icon-name="info-circle"></i>Biz haqimizda</a>
+      <a href="services.html"><i class="iconsax" icon-name="briefcase"></i>Xizmatlar</a>
+      <a href="rooms.html"><i class="iconsax" icon-name="home-2"></i>Xonalar</a>
+      <a href="faq.html" class="active"><i class="iconsax" icon-name="message-question"></i>Savol-Javob</a>
+    </div>
+    <div style="display:flex;gap:10px;align-items:center">
+      <a href="index.html#booking" class="btn btn-primary"><i class="iconsax" icon-name="calendar-1"></i>Bron Qilish</a>
+      <button class="hamburger" id="hamburger" onclick="toggleMenu()"><span></span><span></span><span></span></button>
+    </div>
+  </nav>
+</div>
+
+<div class="page-hero">
+  <div class="container">
+    <div class="eyebrow">Yordam Markazi</div>
+    <h1 style="font-size:clamp(38px,6vw,80px);font-weight:800;line-height:1.05;letter-spacing:-.03em;color:var(--navy)">Savol va<br/>Javoblar</h1>
+    <p style="max-width:560px;margin:18px auto 0;color:var(--muted);font-size:17px;line-height:1.6">Eng ko'p so'raladigan savollar va batafsil javoblar. Qo'shimcha savollaringiz bo'lsa — biz bilan bog'laning.</p>
+  </div>
+</div>
+
+
+<section class="block">
+  <div class="container">
+    <div class="tabs-bar reveal">
+      <button class="tab-btn active" onclick="switchTab('bron',this)"><i class="iconsax" icon-name="calendar-1"></i> Bron</button>
+      <button class="tab-btn" onclick="switchTab('ovqat',this)"><i class="iconsax" icon-name="cake"></i> Ovqatlanish</button>
+      <button class="tab-btn" onclick="switchTab('xona',this)"><i class="iconsax" icon-name="home-2"></i> Xonalar</button>
+      <button class="tab-btn" onclick="switchTab('imkon',this)"><i class="iconsax" icon-name="wind-2"></i> Imkoniyatlar</button>
+      <button class="tab-btn" onclick="switchTab('tolov',this)"><i class="iconsax" icon-name="card-pos"></i> To'lov</button>
+    </div>
+
+    <!-- BRON -->
+    <div class="tab-panel active" id="tab-bron">
+      <div class="faq-list">
+        <div class="faq-item reveal"><button class="faq-q" onclick="toggleFaq(this)">Kirish va chiqish vaqti qanday?<span class="faq-icon">+</span></button><div class="faq-a"><p>Standart kirish vaqti soat 15:00, chiqish soat 12:00. Erta kirish yoki kech chiqish mavjudligiga qarab so'rov asosida 50$ qo'shimcha to'lov bilan amalga oshiriladi.</p></div></div>
+        <div class="faq-item reveal"><button class="faq-q" onclick="toggleFaq(this)">Bronni qanday bekor qilish mumkin?<span class="faq-icon">+</span></button><div class="faq-a"><p>Kelishdan 48 soat oldin bepul bekor qilish mumkin. 48 soatdan kamroq vaqt qolsa, bir kechalik to'lov undiriladi. No-show holatida to'liq to'lov saqlanib qoladi.</p></div></div>
+        <div class="faq-item reveal"><button class="faq-q" onclick="toggleFaq(this)">Minimal qolish muddati bormi?<span class="faq-icon">+</span></button><div class="faq-a"><p>Odatda minimal muddat yo'q — bitta kechasidan ham bron qilish mumkin. Bayram kunlari va maxsus davrlarda minimal 2-3 kecha talab qilinishi mumkin.</p></div></div>
+        <div class="faq-item reveal"><button class="faq-q" onclick="toggleFaq(this)">Aeroport transferi bormi?<span class="faq-icon">+</span></button><div class="faq-a"><p>Ha, premium sinf avtomobillarda shaxsiy transfer xizmatimiz mavjud. Aeroport — mehmonxona: $45, mehmonxona — aeroport: $45. Konsiyer orqali oldindan buyurtma qiling.</p></div></div>
+        <div class="faq-item reveal"><button class="faq-q" onclick="toggleFaq(this)">Guruh bronlash uchun chegirma bormi?<span class="faq-icon">+</span></button><div class="faq-a"><p>10 xona va undan ko'p bron qilganda maxsus korporativ narxlar taklif etiladi. Bizning korporativ bo'lim bilan bog'laning: corporate@luxhotel.com</p></div></div>
+      </div>
+    </div>
+
+    <!-- OVQAT -->
+    <div class="tab-panel" id="tab-ovqat">
+      <div class="faq-list">
+        <div class="faq-item reveal"><button class="faq-q" onclick="toggleFaq(this)">Nonushta narxga kiradimi?<span class="faq-icon">+</span></button><div class="faq-a"><p>Barcha suite xonalar uchun a la carte nonushta bepul. Standart xonalar uchun nonushta $25/kishi. Nonushta soat 07:00 dan 11:00 gacha asosiy restoranda yoki xonangizda.</p></div></div>
+        <div class="faq-item reveal"><button class="faq-q" onclick="toggleFaq(this)">Qanday restoranlar mavjud?<span class="faq-icon">+</span></button><div class="faq-a"><p>3 ta ovqatlanish joyi: "Grand" fine dining (18:00–23:00), "Bistro 124" (07:00–22:00) va "Sky Bar" dam olish bari (16:00–01:00). Barcha menyu talab bo'yicha xonaga yetkaziladi.</p></div></div>
+        <div class="faq-item reveal"><button class="faq-q" onclick="toggleFaq(this)">Vegetarian va allergiyaga oid menyu bormi?<span class="faq-icon">+</span></button><div class="faq-a"><p>Ha, vegetarian, vegan, gluten-free va boshqa dietalar uchun alohida menyu mavjud. Kelishdan oldin allergiyangiz haqida xabar bering.</p></div></div>
+        <div class="faq-item reveal"><button class="faq-q" onclick="toggleFaq(this)">Xonaga ovqat yetkazib berish qachon ishlaydi?<span class="faq-icon">+</span></button><div class="faq-a"><p>Room service 24/7 ishlaydi. 23:00 dan 07:00 gacha tunda +$10 qo'shimcha to'lov qo'shiladi. Buyurtma 30 daqiqada yetkaziladi.</p></div></div>
+      </div>
+    </div>
+
+    <!-- XONA -->
+    <div class="tab-panel" id="tab-xona">
+      <div class="faq-list">
+        <div class="faq-item reveal"><button class="faq-q" onclick="toggleFaq(this)">Xonalarda qanday texnika mavjud?<span class="faq-icon">+</span></button><div class="faq-a"><p>Barcha xonalarda: 65" Smart TV, Nespresso kofe mashinasi, mini-bar, xavfsiz quticha, saç quritgich, bathrobe va tufllar, yuksak tezlikdagi Wi-Fi bepul.</p></div></div>
+        <div class="faq-item reveal"><button class="faq-q" onclick="toggleFaq(this)">Qo'shimcha karavot qo'yish mumkinmi?<span class="faq-icon">+</span></button><div class="faq-a"><p>Xona turiga qarab 1–2 ta qo'shimcha to'shak qo'yish mumkin. Bolalar uchun (12 yoshgacha) bepul, kattalar uchun $30/tun. Oldindan so'rov qiling.</p></div></div>
+        <div class="faq-item reveal"><button class="faq-q" onclick="toggleFaq(this)">Chekish mumkinmi?<span class="faq-icon">+</span></button><div class="faq-a"><p>Barcha xonalar va ichki hududlar tamaki chekish taqiqlangan. Maxsus belgilangan ochiq havoli chekish zonalari mavjud. Qoidabuzarlik uchun $300 tozalash to'lovi undiriladi.</p></div></div>
+        <div class="faq-item reveal"><button class="faq-q" onclick="toggleFaq(this)">Uy hayvonlari bilan kelsa bo'ladimi?<span class="faq-icon">+</span></button><div class="faq-a"><p>Kichik uy hayvonlari (10 kg gacha) qabul qilinadi. Oldindan ma'lum qiling. $50/tun pet to'lovi va $200 qaytariladigan depozit talab qilinadi.</p></div></div>
+      </div>
+    </div>
+
+    <!-- IMKON -->
+    <div class="tab-panel" id="tab-imkon">
+      <div class="faq-list">
+        <div class="faq-item reveal"><button class="faq-q" onclick="toggleFaq(this)">Hovuz va fitnes qachon ishlaydi?<span class="faq-icon">+</span></button><div class="faq-a"><p>Ichki hovuz: 06:00–22:00. Ochiq hovuz (yoz mavsumi): 08:00–20:00. Fitnes markaz: 24/7. Barcha mehmonlar uchun bepul.</p></div></div>
+        <div class="faq-item reveal"><button class="faq-q" onclick="toggleFaq(this)">Spa ni oldindan bron qilish kerakmi?<span class="faq-icon">+</span></button><div class="faq-a"><p>Tavsiya etiladi, ayniqsa hafta oxirlari. Kamida 24 soat oldin bron qiling. +998 90 123 45 67 yoki spa@luxhotel.com orqali murojaat qiling.</p></div></div>
+        <div class="faq-item reveal"><button class="faq-q" onclick="toggleFaq(this)">Biznes markazida qanday xizmatlar bor?<span class="faq-icon">+</span></button><div class="faq-a"><p>Biznes markaz 24/7 ishlaydi: printer, skaner, video konferensiya xonasi, tezkor internet. Konferensiya zallari 10–200 kishilik hajmda ijaraga beriladi.</p></div></div>
+        <div class="faq-item reveal"><button class="faq-q" onclick="toggleFaq(this)">Avtoturargoh bormi?<span class="faq-icon">+</span></button><div class="faq-a"><p>Ha, yopiq va qo'riqlanadigan avtoturargoh mavjud. Mehmonlar uchun $20/kun. Valet xizmati ham taklif etiladi. Elektr avtomobil zaryadlash stantsiyalari bor.</p></div></div>
+      </div>
+    </div>
+
+    <!-- TO'LOV -->
+    <div class="tab-panel" id="tab-tolov">
+      <div class="faq-list">
+        <div class="faq-item reveal"><button class="faq-q" onclick="toggleFaq(this)">Qanday to'lov usullari qabul qilinadi?<span class="faq-icon">+</span></button><div class="faq-a"><p>Visa, MasterCard, AmEx, UnionPay, naqd pul (USD, EUR, so'm), bank o'tkazma. Xitoy mehmanlari uchun WeChat Pay va Alipay ham qabul qilinadi.</p></div></div>
+        <div class="faq-item reveal"><button class="faq-q" onclick="toggleFaq(this)">Depozit talab qilinadimi?<span class="faq-icon">+</span></button><div class="faq-a"><p>Kirishda kredit karta yoki naqd pul orqali $200 qaytariladigan depozit olinadi. Xonadan chiqishda hisob-kitob qilinib, qoldiq qaytariladi.</p></div></div>
+        <div class="faq-item reveal"><button class="faq-q" onclick="toggleFaq(this)">Hisob-faktura beriladi?<span class="faq-icon">+</span></button><div class="faq-a"><p>Ha, elektron va qog'oz shaklida rasmiy hisob-faktura beriladi. Korporativ mehmonlar uchun oylik to'lov va maxsus shartnoma imkoniyati mavjud.</p></div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- CONTACT -->
+<section class="block" style="padding-top:0">
+  <div class="container">
+    <div style="text-align:center;margin-bottom:40px" data-anim="up">
+      <div class="eyebrow">Yana Savolingiz Bormi?</div>
+      <h2 class="h2">Biz bilan Bog'laning</h2>
+    </div>
+    <div class="contact-grid" data-stagger>
+      <div class="contact-card reveal" style="transition-delay:.05s">
+        <div class="contact-icon"><i class="iconsax" icon-name="call" style="font-size:36px;color:var(--primary)"></i></div>
+        <h4>Telefon</h4>
+        <p>Kuniga 24 soat, haftada 7 kun konsijerimiz sizga yordam beradi.</p>
+        <a href="tel:+1234567890" class="link">+1 (234) 567-890</a>
+      </div>
+      <div class="contact-card reveal" style="transition-delay:.1s">
+        <div class="contact-icon"><i class="iconsax" icon-name="sms" style="font-size:36px;color:var(--primary)"></i></div>
+        <h4>Elektron Pochta</h4>
+        <p>Savollaringizni yuboring — 2 soat ichida javob beramiz.</p>
+        <a href="mailto:info@luxhotel.com" class="link">info@luxhotel.com</a>
+      </div>
+      <div class="contact-card reveal" style="transition-delay:.15s">
+        <div class="contact-icon"><i class="iconsax" icon-name="location" style="font-size:36px;color:var(--primary)"></i></div>
+        <h4>Manzil</h4>
+        <p>Grand Avenue, 123, Shahar markazi, bizni topish oson.</p>
+        <a href="#" class="link">Xaritada Ko'rish</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="block" style="padding-top:0">
+  <div class="container">
+    <div class="cta-section reveal">
+      <div class="eyebrow" style="color:#a8b8cf">Hali Savollar Bormi?</div>
+      <h2>Barcha savollaringizga javob berishga tayyormiz</h2>
+      <div style="display:flex;gap:14px;justify-content:center;flex-wrap:wrap">
+        <a href="index.html#booking" class="btn btn-outline"><i class="iconsax" icon-name="calendar-1"></i>Bron Qilish</a>
+        <a href="mailto:info@luxhotel.com" class="btn" style="background:rgba(255,255,255,.1);color:#fff;border-color:rgba(255,255,255,.3)">Xat Yozish</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="container">
+    <div class="footer-grid">
+      <div>
+        <div class="footer-brand">✦ LuxHotel</div>
+        <p class="footer-desc">2004 yildan beri jahon darajasidagi xizmat va o'ziga xos qulaylik.</p>
+      </div>
+      <div class="footer-col">
+        <h4>Sahifalar</h4>
+        <a href="about.html"><i class="iconsax" icon-name="info-circle"></i>Biz haqimizda</a>
+        <a href="services.html"><i class="iconsax" icon-name="briefcase"></i>Xizmatlar</a>
+        <a href="rooms.html"><i class="iconsax" icon-name="home-2"></i>Xonalar</a>
+        <a href="faq.html"><i class="iconsax" icon-name="message-question"></i>Savol-Javob</a>
+      </div>
+      <div class="footer-col">
+        <h4>Aloqa</h4>
+        <a href="#"><i class="iconsax" icon-name="location"></i>Grand Avenue, 123</a>
+        <a href="tel:+1234567890"><i class="iconsax" icon-name="call"></i>+1 (234) 567-890</a>
+        <a href="mailto:info@luxhotel.com"><i class="iconsax" icon-name="sms"></i>info@luxhotel.com</a>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p>© 2024 LuxHotel. Barcha huquqlar himoyalangan.</p>
+      <p>Maxfiylik Siyosati · Foydalanish Shartlari</p>
+    </div>
+  </div>
+</footer>
+
+<script src="animate.js"></script>
+<script>
+function toggleMenu(){const m=document.getElementById('mobileMenu'),h=document.getElementById('hamburger');m.classList.toggle('open');h.classList.toggle('open');document.body.style.overflow=m.classList.contains('open')?'hidden':'';}
+function closeMenu(){const m=document.getElementById('mobileMenu'),h=document.getElementById('hamburger');m.classList.remove('open');h.classList.remove('open');document.body.style.overflow='';}
+document.getElementById('mobileMenu').addEventListener('click',function(e){if(e.target===this)closeMenu();});
+const ro=new IntersectionObserver(e=>{e.forEach(x=>{if(x.isIntersecting){x.target.classList.add('visible');ro.unobserve(x.target);}});},{threshold:.1});
+document.querySelectorAll('.reveal').forEach(el=>ro.observe(el));
+function toggleFaq(btn){
+  const item=btn.parentElement;
+  const isOpen=item.classList.contains('open');
+  item.closest('.faq-list').querySelectorAll('.faq-item').forEach(i=>i.classList.remove('open'));
+  if(!isOpen)item.classList.add('open');
+}
+function switchTab(id,btn){
+  document.querySelectorAll('.tab-btn').forEach(b=>b.classList.remove('active'));
+  document.querySelectorAll('.tab-panel').forEach(p=>p.classList.remove('active'));
+  btn.classList.add('active');
+  document.getElementById('tab-'+id).classList.add('active');
+}
+</script>
+</body>
+</html>
+
+
+
+
+

@@ -1,0 +1,283 @@
+﻿<!DOCTYPE html>
+<html lang="uz">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Biz Haqimizda — LuxHotel</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"/>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+<link href="https://fonts.googleapis.com/css2?family=Inter+Tight:wght@400;500;600;700;800&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet"/>
+<link rel="stylesheet" href="https://iconsax.gitlab.io/i/icons.css"/>
+<link rel="stylesheet" href="animate.css"/>
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{--navy:#0e2a4d;--primary:#1e4a8a;--muted:#5b6b80;--soft:#eef3fa}
+html{scroll-behavior:smooth;background:#cdd9ec}
+body{min-height:100vh;background:linear-gradient(160deg,#e8eef7 0%,#cdd9ec 60%,#c4d3e8 100%) fixed;background-color:#cdd9ec;color:var(--navy);font-family:"Inter Tight","Inter",system-ui,sans-serif;-webkit-font-smoothing:antialiased;overflow-x:hidden}
+img{max-width:100%;display:block}
+a{color:inherit;text-decoration:none}
+.container{max-width:1240px;margin:0 auto;padding:0 24px}
+.nav-wrap{position:sticky;top:16px;z-index:100;padding:16px 24px 0}
+.nav{max-width:1240px;margin:0 auto;background:#fff;border-radius:16px;padding:14px 22px;display:flex;align-items:center;justify-content:space-between;box-shadow:0 8px 24px rgba(14,42,77,.08)}
+.brand{font-weight:800;font-size:18px;color:var(--navy)}
+.nav-links{display:flex;gap:24px}
+.nav-links a{font-size:14px;font-weight:500;color:var(--muted);transition:.2s;display:flex;align-items:center;gap:6px;padding:8px 12px;border-radius:8px}.nav-links a:hover{background:var(--soft)}
+.nav-links a:hover,.nav-links a.active{color:var(--navy)}
+.btn{display:inline-flex;align-items:center;justify-content:center;border-radius:10px;padding:10px 20px;font-weight:600;font-size:14px;border:1px solid transparent;cursor:pointer;transition:.2s;font-family:inherit}
+.btn-primary{background:var(--primary);color:#fff}
+.btn-primary:hover{background:#173f78;transform:translateY(-1px)}
+.btn-outline{background:#fff;color:var(--navy);border-color:#e3e8ef}
+.btn-outline:hover{border-color:var(--primary);color:var(--primary)}
+.hamburger{display:none;flex-direction:column;gap:5px;cursor:pointer;padding:6px;background:var(--primary);border-radius:10px;border:none}
+.hamburger span{display:block;width:20px;height:2px;background:#fff;transition:.3s}
+.hamburger.open span:nth-child(1){transform:translateY(7px) rotate(45deg)}
+.hamburger.open span:nth-child(2){opacity:0}
+.hamburger.open span:nth-child(3){transform:translateY(-7px) rotate(-45deg)}
+.mobile-menu{display:none;position:fixed;inset:0;background:rgba(14,42,77,.6);backdrop-filter:blur(4px);z-index:99;opacity:0;transition:opacity .3s}
+.mobile-menu.open{opacity:1}
+.mobile-menu-panel{position:absolute;top:0;right:0;width:280px;height:100%;background:#fff;padding:80px 32px 32px;display:flex;flex-direction:column;gap:20px;transform:translateX(100%);transition:transform .35s cubic-bezier(.4,0,.2,1)}
+.mobile-menu.open .mobile-menu-panel{transform:translateX(0)}
+.mobile-menu-panel a{font-size:18px;font-weight:600;color:var(--navy);padding:10px 0;border-bottom:1px solid #eef2f7}
+.mobile-menu-panel .btn{margin-top:10px;width:100%}
+/* PAGE HERO */
+.page-hero{padding:80px 0 60px;text-align:center}
+.page-hero .eyebrow{color:var(--primary);font-weight:600;font-size:13px;letter-spacing:.08em;text-transform:uppercase;margin-bottom:14px}
+.page-hero h1{font-size:clamp(38px,6vw,80px);font-weight:800;line-height:1.05;letter-spacing:-.03em;color:var(--navy)}
+.page-hero p{max-width:600px;margin:18px auto 0;color:var(--muted);font-size:17px;line-height:1.6}
+/* BLOCKS */
+.block{padding:80px 0}
+.h2{font-size:clamp(28px,4vw,48px);font-weight:800;line-height:1.1;letter-spacing:-.025em;color:var(--navy)}
+.eyebrow{color:var(--primary);font-weight:600;font-size:13px;letter-spacing:.08em;text-transform:uppercase;margin-bottom:12px}
+.lead{color:var(--muted);font-size:17px;line-height:1.65;max-width:560px}
+.two-col{display:grid;grid-template-columns:1fr 1fr;gap:60px;align-items:center}
+/* TIMELINE */
+.timeline{position:relative;padding-left:36px}
+.timeline::before{content:"";position:absolute;left:10px;top:8px;bottom:8px;width:2px;background:linear-gradient(180deg,var(--primary),#a0b8d8)}
+.tl-item{position:relative;margin-bottom:40px}
+.tl-item:last-child{margin-bottom:0}
+.tl-dot{position:absolute;left:-30px;top:6px;width:14px;height:14px;border-radius:50%;background:var(--primary);border:3px solid #e8eef7}
+.tl-year{font-size:12px;font-weight:700;color:var(--primary);letter-spacing:.06em;margin-bottom:4px}
+.tl-title{font-size:18px;font-weight:700;color:var(--navy);margin-bottom:6px}
+.tl-text{color:var(--muted);font-size:15px;line-height:1.55}
+/* TEAM */
+.team-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:24px}
+.team-card{background:#fff;border-radius:20px;overflow:hidden;box-shadow:0 8px 28px rgba(14,42,77,.07);transition:transform .3s,box-shadow .3s}
+.team-card:hover{transform:translateY(-6px);box-shadow:0 20px 50px rgba(14,42,77,.13)}
+.team-card img{width:100%;aspect-ratio:3/4;object-fit:cover;object-position:top}
+.team-card .info{padding:18px}
+.team-card strong{display:block;font-size:16px;color:var(--navy);font-weight:700}
+.team-card span{color:var(--muted);font-size:14px}
+/* VALUES */
+.values-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:24px}
+.value-card{background:#fff;border-radius:20px;padding:32px;box-shadow:0 8px 28px rgba(14,42,77,.06);transition:transform .3s}
+.value-card:hover{transform:translateY(-4px)}
+.value-icon{font-size:36px;margin-bottom:16px}
+.value-card h3{font-size:20px;font-weight:700;color:var(--navy);margin-bottom:10px}
+.value-card p{color:var(--muted);font-size:15px;line-height:1.55}
+/* STATS */
+.stats{background:var(--navy);color:#fff;border-radius:28px;padding:60px 40px;display:grid;grid-template-columns:repeat(4,1fr);gap:24px;text-align:center}
+.stat .num{font-size:52px;font-weight:800;letter-spacing:-.03em;line-height:1}
+.stat .lbl{color:#a8b8cf;margin-top:8px;font-size:15px}
+/* REVEAL */
+.reveal{opacity:0;transform:translateY(36px);transition:opacity .7s ease,transform .7s ease}
+.reveal.visible{opacity:1;transform:translateY(0)}
+.reveal-left{opacity:0;transform:translateX(-40px);transition:opacity .7s ease,transform .7s ease}
+.reveal-left.visible{opacity:1;transform:translateX(0)}
+.reveal-right{opacity:0;transform:translateX(40px);transition:opacity .7s ease,transform .7s ease}
+.reveal-right.visible{opacity:1;transform:translateX(0)}
+/* CTA */
+.cta-section{background:var(--navy);color:#fff;border-radius:28px;padding:70px 40px;text-align:center}
+.cta-section h2{font-size:clamp(28px,4vw,46px);font-weight:800;max-width:600px;margin:0 auto 26px;line-height:1.1}
+footer{padding:50px 0 28px}
+.footer-grid{display:grid;grid-template-columns:2fr 1fr 1fr;gap:48px;margin-bottom:40px}
+.footer-brand{font-weight:800;font-size:20px;color:var(--navy);margin-bottom:10px}
+.footer-desc{color:var(--muted);font-size:15px;line-height:1.6;max-width:300px}
+.footer-col h4{font-size:13px;font-weight:700;color:var(--navy);text-transform:uppercase;letter-spacing:.06em;margin-bottom:14px}
+.footer-col a{display:block;color:var(--muted);font-size:15px;margin-bottom:10px;transition:color .2s}
+.footer-col a:hover{color:var(--primary)}
+.footer-bottom{border-top:1px solid #e3e8ef;padding-top:22px;display:flex;justify-content:space-between}
+.footer-bottom p{color:var(--muted);font-size:14px}
+@media(max-width:900px){.two-col,.values-grid{grid-template-columns:1fr}.team-grid{grid-template-columns:1fr 1fr}.stats{grid-template-columns:1fr 1fr}.footer-grid{grid-template-columns:1fr 1fr}.nav-links{display:none}.hamburger{display:flex}.mobile-menu{display:block}}
+@media(max-width:600px){.team-grid{grid-template-columns:1fr 1fr}.footer-grid{grid-template-columns:1fr}.footer-bottom{flex-direction:column;gap:6px}}
+</style>
+</head>
+<body>
+
+<div class="mobile-menu" id="mobileMenu">
+  <div class="mobile-menu-panel">
+    <a href="about.html" onclick="closeMenu()"><i class="iconsax" icon-name="info-circle"></i>Biz haqimizda</a>
+    <a href="services.html" onclick="closeMenu()"><i class="iconsax" icon-name="briefcase"></i>Xizmatlar</a>
+    <a href="rooms.html" onclick="closeMenu()"><i class="iconsax" icon-name="home-2"></i>Xonalar</a>
+    <a href="faq.html" onclick="closeMenu()"><i class="iconsax" icon-name="message-question"></i>Savol-Javob</a>
+    <a href="index.html#booking" class="btn btn-primary" onclick="closeMenu()"><i class="iconsax" icon-name="calendar-1"></i>Bron Qilish</a>
+  </div>
+</div>
+
+<div class="nav-wrap">
+  <nav class="nav" id="mainNav">
+    <a href="index.html" class="brand">✦ LuxHotel</a>
+    <div class="nav-links">
+      <a href="about.html" class="active"><i class="iconsax" icon-name="info-circle"></i>Biz haqimizda</a>
+      <a href="services.html"><i class="iconsax" icon-name="briefcase"></i>Xizmatlar</a>
+      <a href="rooms.html"><i class="iconsax" icon-name="home-2"></i>Xonalar</a>
+      <a href="faq.html"><i class="iconsax" icon-name="message-question"></i>Savol-Javob</a>
+    </div>
+    <div style="display:flex;gap:10px;align-items:center">
+      <a href="index.html#booking" class="btn btn-primary"><i class="iconsax" icon-name="calendar-1"></i>Bron Qilish</a>
+      <button class="hamburger" id="hamburger" onclick="toggleMenu()"><span></span><span></span><span></span></button>
+    </div>
+  </nav>
+</div>
+
+<!-- PAGE HERO -->
+<div class="page-hero">
+  <div class="container">
+    <div class="eyebrow"><i class="iconsax" icon-name="buildings-2"></i>Bizning Tarixmiz</div>
+    <h1>Mehmondo'stlik<br/>San'ati</h1>
+    <p>2004 yildan beri hashamat va qulaylikni uyg'unlashtirgan LuxHotel — sizning ikkinchi uyingiz.</p>
+  </div>
+</div>
+
+<!-- HERO IMAGE -->
+<div class="container reveal">
+  <img src="https://images.unsplash.com/photo-1542314831-068cd1dbfeeb?w=1200&q=80" alt="LuxHotel" style="width:100%;border-radius:24px;height:480px;object-fit:cover;box-shadow:0 20px 60px rgba(14,42,77,.18)"/>
+</div>
+
+<!-- STORY -->
+<section class="block">
+  <div class="container two-col">
+    <div data-anim="right">
+      <div class="eyebrow"><i class="iconsax" icon-name="book-1"></i>Bizning Hikoyamiz</div>
+      <h2 class="h2">20 Yillik Fidoyilik va Mukammallik</h2>
+      <p class="lead" style="margin-top:18px">LuxHotel 2004 yilda kichik bir oila mehmonxonasi sifatida tashkil etildi. Yillar o'tishi bilan biz mintaqaning eng taniqli hashamatli mehmonxonasiga aylandik.</p>
+      <p class="lead" style="margin-top:14px">Bugun 150 dan ortiq xona, 3 ta restoran, spa markaz va 24/7 konsiyer xizmati bilan har yili 10,000 dan ortiq mehmonni qabul qilamiz.</p>
+    </div>
+    <div data-anim="left">
+      <div class="timeline">
+        <div class="tl-item"><div class="tl-dot"></div><div class="tl-year">2004</div><div class="tl-title">Tashkil Etildi</div><div class="tl-text">40 xonali oila mehmonxonasi sifatida faoliyat boshladi.</div></div>
+        <div class="tl-item"><div class="tl-dot"></div><div class="tl-year">2009</div><div class="tl-title">Kengayish</div><div class="tl-text">Birinchi restoran va spa markaz ochildi, 80 xonaga yetdi.</div></div>
+        <div class="tl-item"><div class="tl-dot"></div><div class="tl-year">2015</div><div class="tl-title">5 Yulduz</div><div class="tl-text">Xalqaro 5 yulduzli mehmonxona sertifikatini qo'lga kiritdi.</div></div>
+        <div class="tl-item"><div class="tl-dot"></div><div class="tl-year">2020</div><div class="tl-title">Yangilanish</div><div class="tl-text">To'liq rekonstruktsiya va 150 xonaga kengaytirildi.</div></div>
+        <div class="tl-item"><div class="tl-dot"></div><div class="tl-year">2024</div><div class="tl-title">Bugun</div><div class="tl-text">Mintaqaning №1 hashamatli mehmonxonasi sifatida tan olinmoqda.</div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- VALUES -->
+<section class="block" style="padding-top:0">
+  <div class="container">
+    <div style="text-align:center;margin-bottom:48px" data-anim="up">
+      <div class="eyebrow"><i class="iconsax" icon-name="star-1"></i>Bizning Qadriyatlar</div>
+      <h2 class="h2">Nima Uchun Bizni Tanlashadi</h2>
+    </div>
+    <div class="values-grid" data-stagger>
+      <div class="value-card reveal" style="transition-delay:.05s"><div class="value-icon"><i class="iconsax" icon-name="award" style="font-size:36px;color:var(--primary)"></i></div><h3>Mukammallik</h3><p>Har bir tafsilotga e'tibor beramiz — kichik narsalar katta farq yaratadi.</p></div>
+      <div class="value-card reveal" style="transition-delay:.1s"><div class="value-icon"><i class="iconsax" icon-name="gem" style="font-size:36px;color:var(--primary)"></i></div><h3>Hashamat</h3><p>Faqat eng yaxshi materiallar, jihozlar va xizmat standartlaridan foydalanamiz.</p></div>
+      <div class="value-card reveal" style="transition-delay:.15s"><div class="value-icon"><i class="iconsax" icon-name="heart" style="font-size:36px;color:var(--primary)"></i></div><h3>Samimiylik</h3><p>Har bir mehmonni oila a'zosi kabi kutib olamiz va g'amxo'rlik qilamiz.</p></div>
+      <div class="value-card reveal" style="transition-delay:.2s"><div class="value-icon"><i class="iconsax" icon-name="leaf-1" style="font-size:36px;color:var(--primary)"></i></div><h3>Barqarorlik</h3><p>Tabiatga zarar bermaslik uchun ekologik texnologiyalardan foydalanamiz.</p></div>
+      <div class="value-card reveal" style="transition-delay:.25s"><div class="value-icon"><i class="iconsax" icon-name="shield-tick" style="font-size:36px;color:var(--primary)"></i></div><h3>Xavfsizlik</h3><p>24/7 xavfsizlik tizimi va maxfiylik kafolati bilan to'liq xotirjamlik.</p></div>
+      <div class="value-card reveal" style="transition-delay:.3s"><div class="value-icon"><i class="iconsax" icon-name="flash-1" style="font-size:36px;color:var(--primary)"></i></div><h3>Innovatsiya</h3><p>Zamonaviy texnologiyalar orqali xizmat sifatini doimo yaxshilab boramiz.</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- STATS -->
+<section class="block" style="padding-top:0">
+  <div class="container">
+    <div class="stats" data-anim="scale">
+      <div class="stat"><div class="num" data-counter="150" data-suffix="+">0</div><div class="lbl">Hashamatli Xona</div></div>
+      <div class="stat"><div class="num" data-counter="10" data-suffix="k+">0</div><div class="lbl">Mamnun Mehmon</div></div>
+      <div class="stat"><div class="num" data-counter="20">0</div><div class="lbl">Yil Tajriba</div></div>
+      <div class="stat"><div class="num" data-counter="5" data-suffix="★">0</div><div class="lbl">Yulduz Reytingi</div></div>
+    </div>
+  </div>
+</section>
+
+<!-- TEAM -->
+<section class="block" style="padding-top:0">
+  <div class="container">
+    <div style="text-align:center;margin-bottom:48px" data-anim="up">
+      <div class="eyebrow"><i class="iconsax" icon-name="people"></i>Bizning Jamoa</div>
+      <h2 class="h2">Professional Xodimlarimiz</h2>
+    </div>
+    <div class="team-grid" data-stagger>
+      <div class="team-card reveal" style="transition-delay:.05s">
+        <img src="https://images.unsplash.com/photo-1560250097-0b93528c311a?w=400&q=80" alt=""/>
+        <div class="info"><strong>Alisher Karimov</strong><span>Bosh Direktor</span></div>
+      </div>
+      <div class="team-card reveal" style="transition-delay:.1s">
+        <img src="https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?w=400&q=80" alt=""/>
+        <div class="info"><strong>Malika Yusupova</strong><span>Operatsiyalar Direktori</span></div>
+      </div>
+      <div class="team-card reveal" style="transition-delay:.15s">
+        <img src="https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?w=400&q=80" alt=""/>
+        <div class="info"><strong>Bobur Rahimov</strong><span>Bosh Oshpaz</span></div>
+      </div>
+      <div class="team-card reveal" style="transition-delay:.2s">
+        <img src="https://images.unsplash.com/photo-1580489944761-15a19d654956?w=400&q=80" alt=""/>
+        <div class="info"><strong>Shahlo Nazarova</strong><span>Mehmon Xizmatlari</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CTA -->
+<section class="block" style="padding-top:0">
+  <div class="container">
+    <div class="cta-section reveal">
+      <div class="eyebrow" style="color:#a8b8cf">Biz bilan bo'ling</div>
+      <h2>LuxHotel'da unutilmas tajribani boshdan kechiring</h2>
+      <div style="display:flex;gap:14px;justify-content:center;flex-wrap:wrap">
+        <a href="index.html#booking" class="btn btn-outline"><i class="iconsax" icon-name="calendar-1"></i>Bron Qilish</a>
+        <a href="rooms.html" class="btn" style="background:rgba(255,255,255,.1);color:#fff;border-color:rgba(255,255,255,.3)">Xonalarni Ko'rish</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="container">
+    <div class="footer-grid">
+      <div>
+        <div class="footer-brand">✦ LuxHotel</div>
+        <p class="footer-desc">2004 yildan beri jahon darajasidagi xizmat va o'ziga xos qulaylik.</p>
+      </div>
+      <div class="footer-col">
+        <h4>Sahifalar</h4>
+        <a href="about.html">Biz haqimizda</a>
+        <a href="services.html"><i class="iconsax" icon-name="briefcase"></i>Xizmatlar</a>
+        <a href="rooms.html"><i class="iconsax" icon-name="home-2"></i>Xonalar</a>
+        <a href="faq.html"><i class="iconsax" icon-name="message-question"></i>Savol-Javob</a>
+      </div>
+      <div class="footer-col">
+        <h4>Aloqa</h4>
+        <a href="#">Grand Avenue, 123</a>
+        <a href="tel:+1234567890">+1 (234) 567-890</a>
+        <a href="mailto:info@luxhotel.com">info@luxhotel.com</a>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p>© 2024 LuxHotel. Barcha huquqlar himoyalangan.</p>
+      <p>Maxfiylik Siyosati · Foydalanish Shartlari</p>
+    </div>
+  </div>
+</footer>
+
+<script src="animate.js"></script>
+<script>
+function toggleMenu(){const m=document.getElementById('mobileMenu'),h=document.getElementById('hamburger');m.classList.toggle('open');h.classList.toggle('open');document.body.style.overflow=m.classList.contains('open')?'hidden':'';}
+function closeMenu(){const m=document.getElementById('mobileMenu'),h=document.getElementById('hamburger');m.classList.remove('open');h.classList.remove('open');document.body.style.overflow='';}
+document.getElementById('mobileMenu').addEventListener('click',function(e){if(e.target===this)closeMenu();});
+window.addEventListener('scroll',()=>{document.getElementById('mainNav').classList.toggle('scrolled',scrollY>60);});
+const ro=new IntersectionObserver(e=>{e.forEach(x=>{if(x.isIntersecting){x.target.classList.add('visible');ro.unobserve(x.target);}});},{threshold:.12});
+document.querySelectorAll('.reveal,.reveal-left,.reveal-right').forEach(el=>ro.observe(el));
+const co=new IntersectionObserver(e=>{e.forEach(x=>{if(!x.isIntersecting)return;const el=x.target,t=+el.dataset.target,s=el.querySelector('span');let n=0;const ti=setInterval(()=>{n+=t/120;el.childNodes[0].nodeValue=Math.min(Math.floor(n),t).toLocaleString();if(n>=t)clearInterval(ti);},16);co.unobserve(x.target);});},{threshold:.5});
+document.querySelectorAll('.num[data-target]').forEach(el=>co.observe(el));
+</script>
+</body>
+</html>
+
+
+
+

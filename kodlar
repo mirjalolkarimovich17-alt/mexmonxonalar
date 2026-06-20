@@ -1,0 +1,322 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>[HOTEL NAME] — Experience Luxury and Comfort</title>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Inter+Tight:wght@400;500;600;700;800&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet" />
+<style>
+  *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+  :root{
+    --bg:linear-gradient(180deg,#e8eef7 0%,#dbe5f1 100%);
+    --navy:#0e2a4d;
+    --navy-2:#16385f;
+    --primary:#1e4a8a;
+    --text:#0e2a4d;
+    --muted:#5b6b80;
+    --card:#ffffff;
+    --soft:#eef3fa;
+  }
+  html,body{background:var(--bg);color:var(--text);font-family:"Inter Tight","Inter",system-ui,sans-serif;-webkit-font-smoothing:antialiased}
+  img{max-width:100%;display:block}
+  a{color:inherit;text-decoration:none}
+  .container{max-width:1240px;margin:0 auto;padding:0 24px}
+
+  /* NAV */
+  .nav-wrap{position:sticky;top:16px;z-index:50;padding:16px 24px 0}
+  .nav{max-width:1240px;margin:0 auto;background:#fff;border-radius:16px;padding:14px 22px;display:flex;align-items:center;justify-content:space-between;box-shadow:0 8px 24px rgba(14,42,77,.06)}
+  .brand{font-weight:700;letter-spacing:.02em;color:var(--navy)}
+  .nav-right{display:flex;gap:10px;align-items:center}
+  .btn{display:inline-flex;align-items:center;justify-content:center;border-radius:10px;padding:10px 18px;font-weight:600;font-size:14px;border:1px solid transparent;cursor:pointer;transition:.2s}
+  .btn-primary{background:var(--primary);color:#fff}
+  .btn-primary:hover{background:#173f78}
+  .btn-outline{background:#fff;color:var(--navy);border-color:#e3e8ef}
+  .btn-icon{width:42px;height:42px;border-radius:10px;background:var(--primary);color:#fff;display:inline-flex;align-items:center;justify-content:center}
+  .btn-icon span{display:block;width:18px;height:2px;background:#fff;position:relative}
+  .btn-icon span::before,.btn-icon span::after{content:"";position:absolute;left:0;width:18px;height:2px;background:#fff}
+  .btn-icon span::before{top:-6px}.btn-icon span::after{top:6px}
+
+  /* HERO */
+  .hero{padding:80px 0 40px;text-align:center}
+  .pill{display:inline-block;background:#fff;border-radius:999px;padding:8px 16px;font-size:13px;color:var(--navy);box-shadow:0 4px 14px rgba(14,42,77,.05);margin-bottom:24px}
+  .hero h1{font-size:clamp(40px,7vw,96px);line-height:1.02;font-weight:700;color:var(--navy);letter-spacing:-.02em}
+  .hero p{max-width:640px;margin:22px auto 0;color:var(--muted);font-size:17px;line-height:1.5}
+  .hero-ctas{display:flex;gap:12px;justify-content:center;margin-top:28px}
+  .fan{position:relative;height:520px;margin:60px auto 0;max-width:1100px}
+  .fan .card{position:absolute;top:50%;left:50%;width:230px;height:320px;background:#fff;padding:10px;border-radius:6px;box-shadow:0 18px 40px rgba(14,42,77,.18);overflow:hidden;transform-origin:50% 100%}
+  .fan .card img{width:100%;height:100%;object-fit:cover;border-radius:4px}
+  .fan .c1{transform:translate(-50%,-50%) rotate(-18deg) translateY(-10px) translateX(-440px)}
+  .fan .c2{transform:translate(-50%,-50%) rotate(-9deg) translateX(-220px)}
+  .fan .c3{transform:translate(-50%,-50%) rotate(0deg)}
+  .fan .c4{transform:translate(-50%,-50%) rotate(9deg) translateX(220px)}
+  .fan .c5{transform:translate(-50%,-50%) rotate(18deg) translateY(-10px) translateX(440px)}
+  @media(max-width:900px){.fan{height:380px}.fan .card{width:150px;height:210px}.fan .c1{transform:translate(-50%,-50%) rotate(-18deg) translateX(-260px)}.fan .c2{transform:translate(-50%,-50%) rotate(-9deg) translateX(-130px)}.fan .c4{transform:translate(-50%,-50%) rotate(9deg) translateX(130px)}.fan .c5{transform:translate(-50%,-50%) rotate(18deg) translateX(260px)}}
+
+  /* SECTIONS */
+  section.block{padding:90px 0}
+  .eyebrow{color:var(--primary);font-weight:600;font-size:14px;letter-spacing:.04em;margin-bottom:14px}
+  .h2{font-size:clamp(34px,5vw,56px);line-height:1.05;font-weight:700;color:var(--navy);letter-spacing:-.02em}
+  .lead{color:var(--muted);font-size:17px;line-height:1.6;max-width:560px}
+
+  .two-col{display:grid;grid-template-columns:1fr 1fr;gap:60px;align-items:center}
+  @media(max-width:820px){.two-col{grid-template-columns:1fr}}
+
+  /* SERVICES */
+  .services-head{display:grid;grid-template-columns:1fr 1fr;gap:40px;align-items:end;margin-bottom:40px}
+  @media(max-width:820px){.services-head{grid-template-columns:1fr}}
+  .grid-3{display:grid;grid-template-columns:repeat(3,1fr);gap:24px}
+  @media(max-width:900px){.grid-3{grid-template-columns:1fr}}
+  .service{background:#fff;border-radius:20px;overflow:hidden;box-shadow:0 8px 28px rgba(14,42,77,.06)}
+  .service .img{aspect-ratio:4/3;overflow:hidden}
+  .service .img img{width:100%;height:100%;object-fit:cover}
+  .service .body{padding:22px}
+  .service h3{font-size:22px;color:var(--navy);margin-bottom:8px}
+  .service p{color:var(--muted);font-size:15px;line-height:1.5}
+
+  /* ROOMS */
+  .rooms-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:24px}
+  @media(max-width:900px){.rooms-grid{grid-template-columns:1fr 1fr}}
+  @media(max-width:600px){.rooms-grid{grid-template-columns:1fr}}
+  .room{position:relative;border-radius:20px;overflow:hidden;aspect-ratio:4/5;box-shadow:0 10px 30px rgba(14,42,77,.1)}
+  .room img{width:100%;height:100%;object-fit:cover;transition:.4s}
+  .room:hover img{transform:scale(1.05)}
+  .room .label{position:absolute;left:18px;right:18px;bottom:18px;background:rgba(255,255,255,.92);backdrop-filter:blur(6px);padding:14px 16px;border-radius:12px}
+  .room .label strong{display:block;color:var(--navy);font-size:17px;margin-bottom:2px}
+  .room .label span{color:var(--muted);font-size:14px}
+
+  /* STATS */
+  .stats{background:var(--navy);color:#fff;border-radius:28px;padding:60px 40px;display:grid;grid-template-columns:1fr 1fr 1fr 1fr;gap:24px;text-align:center}
+  @media(max-width:820px){.stats{grid-template-columns:1fr 1fr}}
+  .stat .num{font-size:54px;font-weight:700;letter-spacing:-.02em}
+  .stat .lbl{color:#a8b8cf;margin-top:6px;font-size:15px}
+
+  /* TESTIMONIALS */
+  .testimonials{display:grid;grid-template-columns:repeat(3,1fr);gap:24px}
+  @media(max-width:900px){.testimonials{grid-template-columns:1fr 1fr}}
+  @media(max-width:600px){.testimonials{grid-template-columns:1fr}}
+  .testimonial{background:#fff;border-radius:20px;padding:26px;box-shadow:0 8px 24px rgba(14,42,77,.06);display:flex;flex-direction:column;gap:20px}
+  .testimonial p{color:var(--navy);font-size:16px;line-height:1.55}
+  .who{display:flex;align-items:center;gap:12px;margin-top:auto}
+  .who img{width:44px;height:44px;border-radius:50%;object-fit:cover}
+  .who strong{display:block;color:var(--navy);font-size:15px}
+  .who span{color:var(--muted);font-size:13px}
+
+  /* FAQ */
+  .faq{background:#fff;border-radius:20px;padding:10px 26px;box-shadow:0 8px 24px rgba(14,42,77,.06)}
+  .faq details{padding:22px 0;border-bottom:1px solid #eef2f7}
+  .faq details:last-child{border-bottom:none}
+  .faq summary{cursor:pointer;list-style:none;display:flex;justify-content:space-between;align-items:center;font-size:18px;color:var(--navy);font-weight:600}
+  .faq summary::-webkit-details-marker{display:none}
+  .faq summary::after{content:"+";font-size:24px;color:var(--primary);font-weight:400}
+  .faq details[open] summary::after{content:"–"}
+  .faq .ans{color:var(--muted);margin-top:10px;line-height:1.6}
+  .tabs{display:inline-flex;background:var(--soft);border-radius:10px;padding:4px;margin-bottom:24px}
+  .tabs button{border:none;background:transparent;padding:8px 18px;border-radius:8px;font-weight:600;color:var(--muted);cursor:pointer}
+  .tabs button.active{background:#fff;color:var(--navy);box-shadow:0 2px 6px rgba(14,42,77,.06)}
+
+  /* CTA */
+  .cta{background:var(--navy);color:#fff;border-radius:28px;padding:80px 40px;text-align:center}
+  .cta h2{font-size:clamp(32px,5vw,52px);line-height:1.1;max-width:820px;margin:0 auto 28px;font-weight:700}
+
+  footer{padding:40px 0;text-align:center;color:var(--muted);font-size:14px}
+</style>
+</head>
+<body>
+
+<div class="nav-wrap">
+  <nav class="nav">
+    <div class="brand">[HOTEL NAME]</div>
+    <div class="nav-right">
+      <a href="#booking" class="btn btn-primary">Book Now</a>
+      <a href="#menu" class="btn-icon" aria-label="Menu"><span></span></a>
+    </div>
+  </nav>
+</div>
+
+<header class="hero">
+  <span class="pill">Welcome to [HOTEL NAME]</span>
+  <h1>Experience Luxury<br/>and Comfort</h1>
+  <p>Discover a haven of refined elegance where world-class service meets bespoke comfort. Your ultimate escape awaits.</p>
+  <div class="hero-ctas">
+    <a href="#booking" class="btn btn-primary">Book Your Stay</a>
+    <a href="#rooms" class="btn btn-outline">Our Suites</a>
+  </div>
+
+  <div class="fan">
+    <div class="card c1"><img src="http://img.b2bpic.net/free-photo/restaurant-hall-with-leather-armchairs-french-windows_140725-8445.jpg" alt=""/></div>
+    <div class="card c2"><img src="http://img.b2bpic.net/free-photo/restaurant-table-private-room-with-fireplace-wooden-ceilings-brick-walls_140725-8458.jpg" alt=""/></div>
+    <div class="card c3"><img src="http://img.b2bpic.net/free-photo/umbrella-chair-around-swimming-pool-neary-sea-ocean-beach-sunrise-sunset-time_74190-8444.jpg" alt=""/></div>
+    <div class="card c4"><img src="http://img.b2bpic.net/free-photo/tart-with-profiteroles-top-with-whipped-cream_114579-85551.jpg" alt=""/></div>
+    <div class="card c5"><img src="http://img.b2bpic.net/free-photo/ai-generated-modern-styled-entryway_23-2150692265.jpg" alt=""/></div>
+  </div>
+</header>
+
+<section id="about" class="block">
+  <div class="container two-col">
+    <div>
+      <h2 class="h2">The Art of Hospitality</h2>
+    </div>
+    <div>
+      <p class="lead">With over 20 years of dedication to excellence, [HOTEL NAME] combines timeless architecture with modern sophistication to provide an unforgettable stay for our guests.</p>
+      <p class="lead" style="margin-top:16px">Our philosophy revolves around anticipating every need, ensuring that every moment spent within our walls is defined by comfort, exclusivity, and care.</p>
+      <a href="#about" class="btn btn-primary" style="margin-top:24px">Learn More</a>
+    </div>
+  </div>
+</section>
+
+<section id="services" class="block">
+  <div class="container">
+    <div class="services-head">
+      <div>
+        <div class="eyebrow">Elevated Experience</div>
+        <h2 class="h2">Premium Hotel Services</h2>
+      </div>
+      <p class="lead">We offer a wide range of amenities to ensure a seamless and relaxing stay at our hotel.</p>
+    </div>
+    <div class="grid-3">
+      <article class="service">
+        <div class="img"><img src="http://img.b2bpic.net/free-photo/hotel-white-home-lamp-cushion_1203-5183.jpg" alt=""/></div>
+        <div class="body"><h3>Airport Transfer</h3><p>Seamless private transportation to and from the airport.</p></div>
+      </article>
+      <article class="service">
+        <div class="img"><img src="http://img.b2bpic.net/free-photo/elegant-female-model-posing-sofa-jacket-suit-new-feminity-concept_23-2148951027.jpg" alt=""/></div>
+        <div class="body"><h3>24/7 Concierge</h3><p>Our dedicated staff is at your service any time of the day.</p></div>
+      </article>
+      <article class="service">
+        <div class="img"><img src="http://img.b2bpic.net/free-photo/pillow-bed_74190-4549.jpg" alt=""/></div>
+        <div class="body"><h3>Gourmet Dining</h3><p>Award-winning flavors prepared by master chefs.</p></div>
+      </article>
+    </div>
+  </div>
+</section>
+
+<section id="rooms" class="block">
+  <div class="container">
+    <div class="services-head">
+      <div>
+        <div class="eyebrow">Our Accommodations</div>
+        <h2 class="h2">Luxury Rooms &amp; Suites</h2>
+      </div>
+      <p class="lead">Designed with your comfort in mind, our rooms offer refined luxury and stunning views.</p>
+    </div>
+    <div class="rooms-grid">
+      <div class="room"><img src="http://img.b2bpic.net/free-photo/3d-rendering-beautiful-comtemporary-luxury-bedroom-suite-hotel-with-tv_105762-2065.jpg" alt=""/><div class="label"><strong>Royal Suite</strong><span>The peak of luxury living.</span></div></div>
+      <div class="room"><img src="http://img.b2bpic.net/free-photo/traveller-texting-messages-before-skiing_482257-76509.jpg" alt=""/><div class="label"><strong>Junior Suite</strong><span>Sophisticated and spacious.</span></div></div>
+      <div class="room"><img src="http://img.b2bpic.net/free-photo/minimalist-architecture-features-trees-white-indoor-space_9975-131828.jpg" alt=""/><div class="label"><strong>Deluxe Twin</strong><span>Perfect for shared stays.</span></div></div>
+      <div class="room"><img src="http://img.b2bpic.net/free-photo/girl-does-make-up-home_1157-33684.jpg" alt=""/><div class="label"><strong>King Bedroom</strong><span>Your private oasis.</span></div></div>
+      <div class="room"><img src="http://img.b2bpic.net/free-photo/interior-modern-bathroom-with-window-overlooking-city_169016-26703.jpg" alt=""/><div class="label"><strong>Spa Suite</strong><span>Unwind in total comfort.</span></div></div>
+      <div class="room"><img src="http://img.b2bpic.net/free-photo/new-york-city-central-park-aerial-view_649448-1415.jpg" alt=""/><div class="label"><strong>Corner Suite</strong><span>Panoramic city views.</span></div></div>
+    </div>
+  </div>
+</section>
+
+<section class="block">
+  <div class="container">
+    <div style="text-align:center;margin-bottom:40px">
+      <div class="eyebrow">Our Legacy</div>
+      <h2 class="h2">By the Numbers</h2>
+      <p class="lead" style="margin:14px auto 0">Excellence defined through consistent quality and guest satisfaction.</p>
+    </div>
+    <div class="stats">
+      <div class="stat"><div class="num">150+</div><div class="lbl">Luxury Rooms</div></div>
+      <div class="stat"><div class="num">10k+</div><div class="lbl">Happy Guests</div></div>
+      <div class="stat"><div class="num">20</div><div class="lbl">Years Serving</div></div>
+      <div class="stat"><div class="num">5</div><div class="lbl">Star Rating</div></div>
+    </div>
+  </div>
+</section>
+
+<section class="block">
+  <div class="container">
+    <div style="text-align:center;margin-bottom:40px">
+      <div class="eyebrow">Guest Stories</div>
+      <h2 class="h2">What Our Guests Say</h2>
+      <p class="lead" style="margin:14px auto 0">Experience the difference of staying with us through the eyes of our visitors.</p>
+    </div>
+    <div class="testimonials">
+      <div class="testimonial">
+        <p>“The service here is truly unparalleled. A perfect experience from check-in to departure.”</p>
+        <div class="who"><img src="http://img.b2bpic.net/free-photo/pov-employee-calling-manager_482257-78578.jpg" alt=""/><div><strong>Elena Rossi</strong><span>Travel Blogger</span></div></div>
+      </div>
+      <div class="testimonial">
+        <p>“Everything I needed for a productive stay was provided with exceptional care.”</p>
+        <div class="who"><img src="http://img.b2bpic.net/free-photo/young-asian-happy-woman-blogger-tourist-silk-suit-scarf-sunglasses-vacation-travel-around-thailand-asian-boat-khao-sok-national-park_343596-1128.jpg" alt=""/><div><strong>David Chen</strong><span>Business Executive</span></div></div>
+      </div>
+      <div class="testimonial">
+        <p>“The aesthetic of this place is breathtaking. I can't wait to come back next year.”</p>
+        <div class="who"><img src="http://img.b2bpic.net/free-photo/brunette-man-black-suit-sunglasses-smiles-attractive-blonde-woman-white-blouse-looks-boyfriend-business-travelers-pose-near-airport_197531-27113.jpg" alt=""/><div><strong>Sarah Miller</strong><span>Design Consultant</span></div></div>
+      </div>
+      <div class="testimonial">
+        <p>“Best hotel experience I've had in years. The spa facility was absolute perfection.”</p>
+        <div class="who"><img src="http://img.b2bpic.net/free-photo/beautiful-young-caucasian-female-with-long-blonde-hair-nice-face-bright-earrings-white-suit_132075-9619.jpg" alt=""/><div><strong>James Wilson</strong><span>Tourist</span></div></div>
+      </div>
+      <div class="testimonial">
+        <p>“Beautiful hotel with high-speed internet and an incredible dining room selection.”</p>
+        <div class="who"><img src="http://img.b2bpic.net/free-photo/side-view-morning-brides-with-bridesmaids_8353-12006.jpg" alt=""/><div><strong>Anna Petrova</strong><span>Digital Nomad</span></div></div>
+      </div>
+      <div class="testimonial">
+        <p>“Every detail was perfect — from the welcome champagne to the turn-down service.”</p>
+        <div class="who"><img src="http://img.b2bpic.net/free-photo/pov-employee-calling-manager_482257-78578.jpg" alt=""/><div><strong>Elena Rossi</strong><span>Travel Blogger</span></div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="block">
+  <div class="container">
+    <div style="text-align:center;margin-bottom:40px">
+      <div class="eyebrow">Useful Info</div>
+      <h2 class="h2">Guest Information</h2>
+      <p class="lead" style="margin:14px auto 0">Common questions answered to make your stay effortless.</p>
+    </div>
+    <div style="text-align:center">
+      <div class="tabs">
+        <button class="active">Booking</button>
+        <button>Dining</button>
+      </div>
+    </div>
+    <div class="faq">
+      <details open>
+        <summary>What is the check-in time?</summary>
+        <div class="ans">Standard check-in begins at 3:00 PM. Early check-in can be arranged upon request, subject to availability.</div>
+      </details>
+      <details>
+        <summary>Do you offer airport transfer?</summary>
+        <div class="ans">Yes — we provide private, chauffeured airport transfers in luxury vehicles. Please arrange in advance through our concierge.</div>
+      </details>
+      <details>
+        <summary>Is breakfast included with my stay?</summary>
+        <div class="ans">All suite reservations include a complimentary à la carte breakfast served in our main dining room or in your suite.</div>
+      </details>
+      <details>
+        <summary>What is the cancellation policy?</summary>
+        <div class="ans">Reservations can be cancelled free of charge up to 48 hours before arrival. Later cancellations incur a one-night fee.</div>
+      </details>
+    </div>
+  </div>
+</section>
+
+<section id="booking" class="block">
+  <div class="container">
+    <div class="cta">
+      <div class="eyebrow" style="color:#a8b8cf">Get in touch</div>
+      <h2>Ready to book your luxurious getaway at [HOTEL NAME]?</h2>
+      <a href="#booking" class="btn btn-outline">Book Now</a>
+    </div>
+  </div>
+</section>
+
+<footer>© [HOTEL NAME] — All rights reserved.</footer>
+
+<script>
+  document.querySelectorAll('.tabs button').forEach(b=>{
+    b.addEventListener('click',()=>{
+      b.parentElement.querySelectorAll('button').forEach(x=>x.classList.remove('active'));
+      b.classList.add('active');
+    });
+  });
+</script>
+</body>
+</html>

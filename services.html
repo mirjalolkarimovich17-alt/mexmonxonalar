@@ -1,0 +1,277 @@
+﻿<!DOCTYPE html>
+<html lang="uz">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Xizmatlar — LuxHotel</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"/>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+<link href="https://fonts.googleapis.com/css2?family=Inter+Tight:wght@400;500;600;700;800&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet"/>
+<link rel="stylesheet" href="https://iconsax.gitlab.io/i/icons.css"/>
+<link rel="stylesheet" href="animate.css"/>
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{--navy:#0e2a4d;--primary:#1e4a8a;--muted:#5b6b80;--soft:#eef3fa}
+html{scroll-behavior:smooth;background:#cdd9ec}
+body{min-height:100vh;background:linear-gradient(160deg,#e8eef7 0%,#cdd9ec 60%,#c4d3e8 100%) fixed;background-color:#cdd9ec;color:var(--navy);font-family:"Inter Tight","Inter",system-ui,sans-serif;-webkit-font-smoothing:antialiased;overflow-x:hidden}
+img{max-width:100%;display:block}
+a{color:inherit;text-decoration:none}
+.container{max-width:1240px;margin:0 auto;padding:0 24px}
+.nav-wrap{position:sticky;top:16px;z-index:100;padding:16px 24px 0}
+.nav{max-width:1240px;margin:0 auto;background:#fff;border-radius:16px;padding:14px 22px;display:flex;align-items:center;justify-content:space-between;box-shadow:0 8px 24px rgba(14,42,77,.08)}
+.brand{font-weight:800;font-size:18px;color:var(--navy)}
+.nav-links{display:flex;gap:24px}
+.nav-links a{font-size:14px;font-weight:500;color:var(--muted);transition:.2s;display:flex;align-items:center;gap:6px;padding:8px 12px;border-radius:8px}.nav-links a:hover{background:var(--soft)}
+.nav-links a:hover,.nav-links a.active{color:var(--navy)}
+.btn{display:inline-flex;align-items:center;justify-content:center;border-radius:10px;padding:10px 20px;font-weight:600;font-size:14px;border:1px solid transparent;cursor:pointer;transition:.2s;font-family:inherit}
+.btn-primary{background:var(--primary);color:#fff}
+.btn-primary:hover{background:#173f78;transform:translateY(-1px)}
+.btn-outline{background:#fff;color:var(--navy);border-color:#e3e8ef}
+.hamburger{display:none;flex-direction:column;gap:5px;cursor:pointer;padding:6px;background:var(--primary);border-radius:10px;border:none}
+.hamburger span{display:block;width:20px;height:2px;background:#fff;transition:.3s}
+.hamburger.open span:nth-child(1){transform:translateY(7px) rotate(45deg)}
+.hamburger.open span:nth-child(2){opacity:0}
+.hamburger.open span:nth-child(3){transform:translateY(-7px) rotate(-45deg)}
+.mobile-menu{display:none;position:fixed;inset:0;background:rgba(14,42,77,.6);backdrop-filter:blur(4px);z-index:99;opacity:0;transition:opacity .3s}
+.mobile-menu.open{opacity:1}
+.mobile-menu-panel{position:absolute;top:0;right:0;width:280px;height:100%;background:#fff;padding:80px 32px 32px;display:flex;flex-direction:column;gap:20px;transform:translateX(100%);transition:transform .35s cubic-bezier(.4,0,.2,1)}
+.mobile-menu.open .mobile-menu-panel{transform:translateX(0)}
+.mobile-menu-panel a{font-size:18px;font-weight:600;color:var(--navy);padding:10px 0;border-bottom:1px solid #eef2f7}
+.mobile-menu-panel .btn{margin-top:10px;width:100%}
+.page-hero{padding:80px 0 60px;text-align:center}
+.eyebrow{color:var(--primary);font-weight:600;font-size:13px;letter-spacing:.08em;text-transform:uppercase;margin-bottom:12px}
+.h2{font-size:clamp(28px,4vw,48px);font-weight:800;line-height:1.1;letter-spacing:-.025em;color:var(--navy)}
+.lead{color:var(--muted);font-size:17px;line-height:1.65;max-width:560px}
+.block{padding:80px 0}
+/* SERVICE FEATURE */
+.svc-feature{display:grid;grid-template-columns:1fr 1fr;gap:60px;align-items:center;margin-bottom:80px}
+.svc-feature:last-child{margin-bottom:0}
+.svc-feature.reverse{direction:rtl}
+.svc-feature.reverse>*{direction:ltr}
+.svc-img{border-radius:24px;overflow:hidden;box-shadow:0 20px 60px rgba(14,42,77,.15)}
+.svc-img img{width:100%;height:380px;object-fit:cover;transition:.5s}
+.svc-img:hover img{transform:scale(1.04)}
+.svc-content .tag{display:inline-block;background:var(--soft);color:var(--primary);font-size:13px;font-weight:600;padding:6px 14px;border-radius:20px;margin-bottom:16px}
+.svc-content h3{font-size:clamp(24px,3vw,36px);font-weight:800;color:var(--navy);margin-bottom:14px;line-height:1.1}
+.svc-content p{color:var(--muted);font-size:16px;line-height:1.65;margin-bottom:16px}
+.svc-features{list-style:none;display:flex;flex-direction:column;gap:10px;margin-bottom:24px}
+.svc-features li{display:flex;align-items:center;gap:10px;color:var(--navy);font-size:15px}
+.svc-features li::before{content:"✓";width:22px;height:22px;background:var(--primary);color:#fff;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:12px;font-weight:700;flex-shrink:0}
+/* MINI GRID */
+.mini-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:20px}
+.mini-card{background:#fff;border-radius:16px;padding:26px;text-align:center;box-shadow:0 6px 20px rgba(14,42,77,.06);transition:transform .3s,box-shadow .3s}
+.mini-card:hover{transform:translateY(-5px);box-shadow:0 16px 40px rgba(14,42,77,.1)}
+.mini-icon{font-size:32px;margin-bottom:12px}
+.mini-card h4{font-size:16px;font-weight:700;color:var(--navy);margin-bottom:6px}
+.mini-card p{color:var(--muted);font-size:14px;line-height:1.5}
+/* REVEAL */
+.reveal{opacity:0;transform:translateY(36px);transition:opacity .7s ease,transform .7s ease}
+.reveal.visible{opacity:1;transform:translateY(0)}
+.reveal-left{opacity:0;transform:translateX(-40px);transition:opacity .7s ease,transform .7s ease}
+.reveal-left.visible{opacity:1;transform:translateX(0)}
+.reveal-right{opacity:0;transform:translateX(40px);transition:opacity .7s ease,transform .7s ease}
+.reveal-right.visible{opacity:1;transform:translateX(0)}
+.cta-section{background:var(--navy);color:#fff;border-radius:28px;padding:70px 40px;text-align:center}
+.cta-section h2{font-size:clamp(28px,4vw,46px);font-weight:800;max-width:600px;margin:0 auto 26px;line-height:1.1}
+footer{padding:50px 0 28px}
+.footer-grid{display:grid;grid-template-columns:2fr 1fr 1fr;gap:48px;margin-bottom:40px}
+.footer-brand{font-weight:800;font-size:20px;color:var(--navy);margin-bottom:10px}
+.footer-desc{color:var(--muted);font-size:15px;line-height:1.6;max-width:300px}
+.footer-col h4{font-size:13px;font-weight:700;color:var(--navy);text-transform:uppercase;letter-spacing:.06em;margin-bottom:14px}
+.footer-col a{display:block;color:var(--muted);font-size:15px;margin-bottom:10px;transition:color .2s}
+.footer-col a:hover{color:var(--primary)}
+.footer-bottom{border-top:1px solid #e3e8ef;padding-top:22px;display:flex;justify-content:space-between}
+.footer-bottom p{color:var(--muted);font-size:14px}
+@media(max-width:900px){.svc-feature,.svc-feature.reverse{grid-template-columns:1fr;direction:ltr}.mini-grid{grid-template-columns:1fr 1fr}.footer-grid{grid-template-columns:1fr 1fr}.nav-links{display:none}.hamburger{display:flex}.mobile-menu{display:block}}
+@media(max-width:600px){.mini-grid{grid-template-columns:1fr 1fr}.footer-grid{grid-template-columns:1fr}.footer-bottom{flex-direction:column;gap:6px}}
+</style>
+</head>
+<body>
+
+<div class="mobile-menu" id="mobileMenu">
+  <div class="mobile-menu-panel">
+    <a href="about.html" onclick="closeMenu()"><i class="iconsax" icon-name="info-circle"></i>Biz haqimizda</a>
+    <a href="services.html" onclick="closeMenu()"><i class="iconsax" icon-name="briefcase"></i>Xizmatlar</a>
+    <a href="rooms.html" onclick="closeMenu()"><i class="iconsax" icon-name="home-2"></i>Xonalar</a>
+    <a href="faq.html" onclick="closeMenu()"><i class="iconsax" icon-name="message-question"></i>Savol-Javob</a>
+    <a href="index.html#booking" class="btn btn-primary" onclick="closeMenu()"><i class="iconsax" icon-name="calendar-1"></i>Bron Qilish</a>
+  </div>
+</div>
+
+<div class="nav-wrap">
+  <nav class="nav" id="mainNav">
+    <a href="index.html" class="brand">✦ LuxHotel</a>
+    <div class="nav-links">
+      <a href="about.html"><i class="iconsax" icon-name="info-circle"></i>Biz haqimizda</a>
+      <a href="services.html" class="active"><i class="iconsax" icon-name="briefcase"></i>Xizmatlar</a>
+      <a href="rooms.html"><i class="iconsax" icon-name="home-2"></i>Xonalar</a>
+      <a href="faq.html"><i class="iconsax" icon-name="message-question"></i>Savol-Javob</a>
+    </div>
+    <div style="display:flex;gap:10px;align-items:center">
+      <a href="index.html#booking" class="btn btn-primary"><i class="iconsax" icon-name="calendar-1"></i>Bron Qilish</a>
+      <button class="hamburger" id="hamburger" onclick="toggleMenu()"><span></span><span></span><span></span></button>
+    </div>
+  </nav>
+</div>
+
+<div class="page-hero">
+  <div class="container">
+    <div class="eyebrow">Premium Xizmatlar</div>
+    <h1 style="font-size:clamp(38px,6vw,80px);font-weight:800;line-height:1.05;letter-spacing:-.03em;color:var(--navy)">Har Bir Ehtiyojingiz<br/>Uchun Tayyormiz</h1>
+    <p style="max-width:600px;margin:18px auto 0;color:var(--muted);font-size:17px;line-height:1.6">Spa dan tortib gurme ovqatlanishga qadar — LuxHotel'da har lahza mukammal bo'lishi uchun ishlаymiz.</p>
+  </div>
+</div>
+
+<section class="block">
+  <div class="container">
+
+    <div class="svc-feature">
+      <div class="svc-img parallax-wrap" data-anim="right">
+        <img src="https://images.unsplash.com/photo-1540555700478-4be289fbecef?w=700&q=80" alt="Spa"/>
+      </div>
+      <div class="svc-content reveal-right">
+        <span class="tag">Salomatlik & Go'zallik</span>
+        <h3>Hashamatli Spa & Wellnes Markaz</h3>
+        <p>Butun dunyo bo'ylab yig'ilgan eng yaxshi muolajalar bilan tanangiz va ruhingizni yangilang. Professional mutaxassislarimiz siz uchun maxsus dastur tuzadi.</p>
+        <ul class="svc-features">
+          <li>Aromaterap va hot stone massage</li>
+          <li>Yuz va tana parvarishi muolajalari</li>
+          <li>Hammom va sauna xonalari</li>
+          <li>Shaxsiy beauty konsultatsiya</li>
+        </ul>
+        <a href="index.html#booking" class="btn btn-primary"><i class="iconsax" icon-name="calendar-1"></i>Bron Qilish</a>
+      </div>
+    </div>
+
+    <div class="svc-feature reverse">
+      <div class="svc-img parallax-wrap" data-anim="left">
+        <img src="https://images.unsplash.com/photo-1414235077428-338989a2e8c0?w=700&q=80" alt="Dining"/>
+      </div>
+      <div class="svc-content reveal-left">
+        <span class="tag"><i class="iconsax" icon-name="cake" style="vertical-align:middle"></i> Ovqatlanish</span>
+        <h3>Gurme Restoran & Bar</h3>
+        <p>Mukofotli oshpazlarimiz tomonidan tayyorlangan milliy va xalqaro taomlar. Har kuni yangi va mavsumiy mahsulotlardan foydalaniladi.</p>
+        <ul class="svc-features">
+          <li>Fine dining restoran (soat 18:00–23:00)</li>
+          <li>Bistro — nonushta va tushlik</li>
+          <li>Rooftop bar — panoramik manzara</li>
+          <li>Xonaga yetkazib berish 24/7</li>
+        </ul>
+        <a href="index.html#booking" class="btn btn-primary"><i class="iconsax" icon-name="calendar-1"></i>Bron Qilish</a>
+      </div>
+    </div>
+
+    <div class="svc-feature">
+      <div class="svc-img parallax-wrap" data-anim="right">
+        <img src="https://images.unsplash.com/photo-1575429198097-0414ec08e8cd?w=700&q=80" alt="Pool"/>
+      </div>
+      <div class="svc-content reveal-right">
+        <span class="tag"><i class="iconsax" icon-name="weight" style="vertical-align:middle"></i> Sport & Dam Olish</span>
+        <h3>Hovuz & Fitnes Markaz</h3>
+        <p>Ichki isitilgan hovuz va ochiq infinity hovuzimizda dam oling. 24/7 ishlayдigan zamonaviy fitnes markazimiz barcha imkoniyatlarga ega.</p>
+        <ul class="svc-features">
+          <li>Ichki isitilgan havza (06:00–22:00)</li>
+          <li>Ochiq infinity pool (mavsum)</li>
+          <li>Zamonaviy fitnes jihozlari 24/7</li>
+          <li>Shaxsiy murabbiy xizmati</li>
+        </ul>
+        <a href="index.html#booking" class="btn btn-primary"><i class="iconsax" icon-name="calendar-1"></i>Bron Qilish</a>
+      </div>
+    </div>
+
+    <div class="svc-feature reverse">
+      <div class="svc-img parallax-wrap" data-anim="left">
+        <img src="https://images.unsplash.com/photo-1436491865332-7a61a109cc05?w=700&q=80" alt="Transfer"/>
+      </div>
+      <div class="svc-content reveal-left">
+        <span class="tag"><i class="iconsax" icon-name="car" style="vertical-align:middle"></i> Transfer & Sayohat</span>
+        <h3>Aeroport Transfer & Ekskursiyalar</h3>
+        <p>Hashamatli avtomobillarda aeroportga yetkazib berish va olish xizmati. Shahar bo'ylab ekskursiyalar va turizm paketlarini ham taqdim etamiz.</p>
+        <ul class="svc-features">
+          <li>Business class transfer avtomobillari</li>
+          <li>Professional haydovchilar</li>
+          <li>Shahar ekskursiyalari</li>
+          <li>Maxsus tadbirlar uchun transport</li>
+        </ul>
+        <a href="index.html#booking" class="btn btn-primary"><i class="iconsax" icon-name="calendar-1"></i>Bron Qilish</a>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- MINI SERVICES -->
+<section class="block" style="padding-top:0">
+  <div class="container">
+    <div style="text-align:center;margin-bottom:44px" data-anim="up">
+      <div class="eyebrow">Qo'shimcha Xizmatlar</div>
+      <h2 class="h2">Boshqa Imkoniyatlar</h2>
+    </div>
+    <div class="mini-grid" data-stagger>
+      <div class="mini-card tilt" style="transition-delay:.05s"><div class="mini-icon"><i class="iconsax" icon-name="call" style="font-size:32px;color:var(--primary)"></i></div><h4>24/7 Konsiyer</h4><p>Har qanday so'rovingizga darhol javob beramiz.</p></div>
+      <div class="mini-card tilt" style="transition-delay:.1s"><div class="mini-icon"><i class="iconsax" icon-name="shop" style="font-size:32px;color:var(--primary)"></i></div><h4>Kir Yuvish</h4><p>Express kir yuvish va dazmollash xizmati.</p></div>
+      <div class="mini-card tilt" style="transition-delay:.15s"><div class="mini-icon"><i class="iconsax" icon-name="wifi" style="font-size:32px;color:var(--primary)"></i></div><h4>Tezkor Wi-Fi</h4><p>Butun mehmonxona bo'ylab bepul yuqori tezlikdagi internet.</p></div>
+      <div class="mini-card tilt" style="transition-delay:.2s"><div class="mini-icon"><i class="iconsax" icon-name="car" style="font-size:32px;color:var(--primary)"></i></div><h4>Avto Turargoh</h4><p>Xavfsiz yopiq avto turargoh 24/7 qo'riqlanadi.</p></div>
+      <div class="mini-card tilt" style="transition-delay:.25s"><div class="mini-icon"><i class="iconsax" icon-name="calendar-tick" style="font-size:32px;color:var(--primary)"></i></div><h4>Tadbirlar Zali</h4><p>To'y, konferensiya va maxsus tadbirlar uchun zamonaviy zallar.</p></div>
+      <div class="mini-card tilt" style="transition-delay:.3s"><div class="mini-icon"><i class="iconsax" icon-name="people" style="font-size:32px;color:var(--primary)"></i></div><h4>Bolalar Xizmati</h4><p>Professional bolalar parvarishchilari va o'yin xonasi.</p></div>
+      <div class="mini-card tilt" style="transition-delay:.35s"><div class="mini-icon"><i class="iconsax" icon-name="health" style="font-size:32px;color:var(--primary)"></i></div><h4>Tibbiy Yordam</h4><p>Doimo tayyor tibbiy xodim va dorixona xizmati.</p></div>
+      <div class="mini-card tilt" style="transition-delay:.4s"><div class="mini-icon"><i class="iconsax" icon-name="bag-2" style="font-size:32px;color:var(--primary)"></i></div><h4>Xarid Xizmati</div><p>Souvenir do'kon va shaxsiy xarid assistenti.</p></div>
+    </div>
+  </div>
+</section>
+
+<section class="block" style="padding-top:0">
+  <div class="container">
+    <div class="cta-section reveal">
+      <div class="eyebrow" style="color:#a8b8cf">Boshlang</div>
+      <h2>Barcha xizmatlardan foydalanish uchun bugun bron qiling</h2>
+      <div style="display:flex;gap:14px;justify-content:center;flex-wrap:wrap">
+        <a href="index.html#booking" class="btn btn-outline"><i class="iconsax" icon-name="calendar-1"></i>Bron Qilish</a>
+        <a href="rooms.html" class="btn" style="background:rgba(255,255,255,.1);color:#fff;border-color:rgba(255,255,255,.3)">Xonalarni Ko'rish</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="container">
+    <div class="footer-grid">
+      <div>
+        <div class="footer-brand">✦ LuxHotel</div>
+        <p class="footer-desc">2004 yildan beri jahon darajasidagi xizmat va o'ziga xos qulaylik.</p>
+      </div>
+      <div class="footer-col">
+        <h4>Sahifalar</h4>
+        <a href="about.html"><i class="iconsax" icon-name="info-circle"></i>Biz haqimizda</a>
+        <a href="services.html">Xizmatlar</a>
+        <a href="rooms.html"><i class="iconsax" icon-name="home-2"></i>Xonalar</a>
+        <a href="faq.html"><i class="iconsax" icon-name="message-question"></i>Savol-Javob</a>
+      </div>
+      <div class="footer-col">
+        <h4>Aloqa</h4>
+        <a href="#">Grand Avenue, 123</a>
+        <a href="tel:+1234567890">+1 (234) 567-890</a>
+        <a href="mailto:info@luxhotel.com">info@luxhotel.com</a>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p>© 2024 LuxHotel. Barcha huquqlar himoyalangan.</p>
+      <p>Maxfiylik Siyosati · Foydalanish Shartlari</p>
+    </div>
+  </div>
+</footer>
+
+<script src="animate.js"></script>
+<script>
+function toggleMenu(){const m=document.getElementById('mobileMenu'),h=document.getElementById('hamburger');m.classList.toggle('open');h.classList.toggle('open');document.body.style.overflow=m.classList.contains('open')?'hidden':'';}
+function closeMenu(){const m=document.getElementById('mobileMenu'),h=document.getElementById('hamburger');m.classList.remove('open');h.classList.remove('open');document.body.style.overflow='';}
+document.getElementById('mobileMenu').addEventListener('click',function(e){if(e.target===this)closeMenu();});
+const ro=new IntersectionObserver(e=>{e.forEach(x=>{if(x.isIntersecting){x.target.classList.add('visible');ro.unobserve(x.target);}});},{threshold:.1});
+document.querySelectorAll('.reveal,.reveal-left,.reveal-right').forEach(el=>ro.observe(el));
+</script>
+</body>
+</html>
+
+
+
+
