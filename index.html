@@ -2,7 +2,7 @@
 <html lang="uz">
 <head>
 <meta charset="UTF-8"/>
-<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"/>
 <title>LuxHotel — Hashamat va Qulaylikni His Eting</title>
 <link rel="preconnect" href="https://fonts.googleapis.com"/>
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
@@ -13,7 +13,7 @@
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
 :root{--navy:#0e2a4d;--primary:#1e4a8a;--muted:#5b6b80;--soft:#eef3fa;--card:#fff}
 html{scroll-behavior:smooth}
-body{min-height:100vh;color:var(--navy);font-family:"Inter Tight",system-ui,sans-serif;-webkit-font-smoothing:antialiased;overflow-x:hidden;background:#cdd9ec}
+body{min-height:100vh;color:var(--navy);font-family:"Inter Tight",system-ui,sans-serif;-webkit-font-smoothing:antialiased;overflow-x:hidden;background:#cdd9ec;width:100%;position:relative}
 img{max-width:100%;display:block}
 a{color:inherit;text-decoration:none}
 .container{max-width:1240px;margin:0 auto;padding:0 24px}
@@ -192,7 +192,8 @@ footer{padding:60px 0 28px;background:rgba(255,255,255,.4);backdrop-filter:blur(
   .grid-3,.rooms-grid,.testimonials{grid-template-columns:1fr 1fr}
   .stats-row{grid-template-columns:1fr 1fr}
   .stat-box{border-right:none;border-bottom:1px solid rgba(255,255,255,.08)}
-  .booking-bar{grid-template-columns:1fr 1fr}
+  .booking-bar{grid-template-columns:1fr 1fr;gap:20px 0;padding:24px}
+  .form-group{padding:0 16px}
   .footer-grid{grid-template-columns:1fr 1fr}
   .nav-links{display:none}
   .hamburger{display:flex}
@@ -201,7 +202,10 @@ footer{padding:60px 0 28px;background:rgba(255,255,255,.4);backdrop-filter:blur(
 @media(max-width:600px){
   .grid-3,.rooms-grid,.testimonials{grid-template-columns:1fr}
   .stats-row{grid-template-columns:1fr 1fr}
-  .booking-bar{grid-template-columns:1fr}
+  .booking-bar{grid-template-columns:1fr;gap:0;padding:20px 16px}
+  .form-group{padding:12px 0;border-right:none;border-bottom:1px solid #2a2a2a}
+  .form-group:last-of-type{border-bottom:none}
+  .booking-bar .btn{margin-left:0;margin-top:16px;width:100%;align-self:auto}
   .footer-grid{grid-template-columns:1fr}
   .hero-ctas{flex-direction:column;align-items:center}
   .cta-section{padding:50px 20px}
@@ -231,6 +235,38 @@ footer{padding:60px 0 28px;background:rgba(255,255,255,.4);backdrop-filter:blur(
   .two-col{gap:30px}
   .cta-section{padding:40px 16px;border-radius:16px}
   .cta-section h2{font-size:clamp(24px,7vw,36px)}
+}
+
+/* iOS-STYLE CALENDAR PICKER */
+.ios-cal-overlay{position:fixed;inset:0;background:rgba(0,0,0,.5);z-index:1000;display:flex;align-items:flex-end;justify-content:center;opacity:0;pointer-events:none;transition:opacity .25s}
+.ios-cal-overlay.open{opacity:1;pointer-events:all}
+.ios-cal-sheet{background:#1c1c1e;border-radius:20px 20px 0 0;width:100%;max-width:500px;padding:0 0 32px;transform:translateY(100%);transition:transform .32s cubic-bezier(.4,0,.2,1)}
+.ios-cal-overlay.open .ios-cal-sheet{transform:translateY(0)}
+.ios-cal-header{display:flex;align-items:center;justify-content:space-between;padding:16px 20px 0}
+.ios-cal-title{font-size:17px;font-weight:700;color:#fff}
+.ios-cal-close{background:none;border:none;color:#636366;font-size:22px;cursor:pointer;line-height:1;padding:4px 8px}
+.ios-cal-nav{display:flex;align-items:center;justify-content:space-between;padding:12px 20px}
+.ios-cal-nav button{background:#2c2c2e;border:none;color:#fff;font-size:18px;width:36px;height:36px;border-radius:50%;cursor:pointer;display:flex;align-items:center;justify-content:center}
+.ios-cal-month{font-size:16px;font-weight:600;color:#fff}
+.ios-cal-grid{padding:0 12px}
+.ios-cal-dow{display:grid;grid-template-columns:repeat(7,1fr);text-align:center;padding:0 4px 8px}
+.ios-cal-dow span{font-size:12px;color:#636366;font-weight:600;padding:4px 0}
+.ios-cal-days{display:grid;grid-template-columns:repeat(7,1fr);gap:2px}
+.ios-cal-day{aspect-ratio:1;display:flex;align-items:center;justify-content:center;border-radius:50%;font-size:15px;color:#fff;cursor:pointer;transition:.15s;background:none;border:none;font-family:inherit}
+.ios-cal-day:hover:not(:disabled){background:#2c2c2e}
+.ios-cal-day.today{font-weight:700;color:#4285f4}
+.ios-cal-day.selected{background:#4285f4;color:#fff;font-weight:700}
+.ios-cal-day.in-range{background:rgba(66,133,244,.2);border-radius:0}
+.ios-cal-day.range-start{background:#4285f4;color:#fff;border-radius:50% 0 0 50%}
+.ios-cal-day.range-end{background:#4285f4;color:#fff;border-radius:0 50% 50% 0}
+.ios-cal-day:disabled{color:#3a3a3c;cursor:default}
+.ios-cal-day.empty{pointer-events:none}
+.ios-cal-confirm{margin:16px 20px 0;width:calc(100% - 40px);background:linear-gradient(135deg,#4285f4,#34a853);border:none;color:#fff;font-size:16px;font-weight:700;padding:14px;border-radius:14px;cursor:pointer;font-family:inherit}
+.date-display{font-size:15px;color:#fff;cursor:pointer;padding:8px 0;border-bottom:1.5px solid #333;display:flex;align-items:center;gap:8px}
+.date-display .placeholder{color:#555}
+@media(min-width:600px){
+  .ios-cal-overlay{align-items:center}
+  .ios-cal-sheet{border-radius:20px;max-width:360px}
 }
 </style>
 </head>
@@ -449,11 +485,13 @@ footer{padding:60px 0 28px;background:rgba(255,255,255,.4);backdrop-filter:blur(
     <div class="booking-bar">
       <div class="form-group">
         <label><i class="iconsax" icon-name="calendar-1"></i>Kirish Sanasi</label>
-        <input type="date" id="checkin"/>
+        <div class="date-display" id="checkinDisplay" onclick="openCal('checkin')"><span class="placeholder" id="checkinText">Sana tanlang</span></div>
+        <input type="hidden" id="checkin"/>
       </div>
       <div class="form-group">
         <label><i class="iconsax" icon-name="calendar-2"></i>Chiqish Sanasi</label>
-        <input type="date" id="checkout"/>
+        <div class="date-display" id="checkoutDisplay" onclick="openCal('checkout')"><span class="placeholder" id="checkoutText">Sana tanlang</span></div>
+        <input type="hidden" id="checkout"/>
       </div>
       <div class="form-group">
         <label><i class="iconsax" icon-name="people"></i>Mehmonlar</label>
@@ -475,6 +513,28 @@ footer{padding:60px 0 28px;background:rgba(255,255,255,.4);backdrop-filter:blur(
     </div>
   </div>
 </section>
+
+<!-- iOS CALENDAR OVERLAY -->
+<div class="ios-cal-overlay" id="iosCalOverlay" onclick="handleCalOverlayClick(event)">
+  <div class="ios-cal-sheet">
+    <div class="ios-cal-header">
+      <span class="ios-cal-title" id="iosCalTitle">Kirish Sanasi</span>
+      <button class="ios-cal-close" onclick="closeCal()">✕</button>
+    </div>
+    <div class="ios-cal-nav">
+      <button onclick="changeMonth(-1)">‹</button>
+      <span class="ios-cal-month" id="iosCalMonth"></span>
+      <button onclick="changeMonth(1)">›</button>
+    </div>
+    <div class="ios-cal-grid">
+      <div class="ios-cal-dow">
+        <span>Du</span><span>Se</span><span>Ch</span><span>Pa</span><span>Ju</span><span>Sh</span><span>Ya</span>
+      </div>
+      <div class="ios-cal-days" id="iosCalDays"></div>
+    </div>
+    <button class="ios-cal-confirm" onclick="confirmCal()">Tasdiqlash</button>
+  </div>
+</div>
 
 <!-- TESTIMONIALS -->
 <section class="block" style="background:linear-gradient(160deg,#dbe5f1,#e8eef7)">
@@ -573,11 +633,100 @@ function closeMenu(){const m=document.getElementById('mobileMenu'),h=document.ge
 document.getElementById('mobileMenu').addEventListener('click',function(e){if(e.target===this)closeMenu();});
 function toggleFaq(btn){const item=btn.parentElement;const isOpen=item.classList.contains('open');item.closest('.faq-list').querySelectorAll('.faq-item').forEach(i=>i.classList.remove('open'));if(!isOpen)item.classList.add('open');}
 document.querySelectorAll('.tabs button').forEach(btn=>{btn.addEventListener('click',()=>{btn.closest('.tabs').querySelectorAll('button').forEach(b=>b.classList.remove('active'));btn.classList.add('active');const tab=btn.dataset.tab;document.querySelectorAll('.faq-list').forEach(l=>l.style.display='none');const t=document.getElementById('faq'+tab.charAt(0).toUpperCase()+tab.slice(1));if(t)t.style.display='block';});});
-function handleBooking(){const ci=document.getElementById('checkin').value,co=document.getElementById('checkout').value;if(!ci||!co){alert('Iltimos, kirish va chiqish sanalarini tanlang.');return;}if(new Date(co)<=new Date(ci)){alert("Chiqish sanasi kirishdan keyin bo'lishi kerak.");return;}alert("Rahmat! Broningizni tasdiqlash uchun tez orada siz bilan bog'lanamiz.");}
-const today=new Date().toISOString().split('T')[0];
-document.getElementById('checkin').min=today;
-document.getElementById('checkout').min=today;
-document.getElementById('checkin').addEventListener('change',function(){document.getElementById('checkout').min=this.value;});
+
+/* ---- iOS CALENDAR ---- */
+const MONTHS_UZ=['Yanvar','Fevral','Mart','Aprel','May','Iyun','Iyul','Avgust','Sentabr','Oktabr','Noyabr','Dekabr'];
+let calMode='checkin', calYear, calMonth, calSelected=null;
+
+function openCal(mode){
+  calMode=mode;
+  const today=new Date();
+  const existingVal=document.getElementById(mode).value;
+  if(existingVal){const d=new Date(existingVal);calYear=d.getFullYear();calMonth=d.getMonth();calSelected=new Date(existingVal);}
+  else{calYear=today.getFullYear();calMonth=today.getMonth();calSelected=null;}
+  document.getElementById('iosCalTitle').textContent=mode==='checkin'?'Kirish Sanasini Tanlang':'Chiqish Sanasini Tanlang';
+  renderCal();
+  document.getElementById('iosCalOverlay').classList.add('open');
+  document.body.style.overflow='hidden';
+}
+
+function closeCal(){
+  document.getElementById('iosCalOverlay').classList.remove('open');
+  document.body.style.overflow='';
+}
+
+function handleCalOverlayClick(e){
+  if(e.target===document.getElementById('iosCalOverlay'))closeCal();
+}
+
+function changeMonth(dir){
+  calMonth+=dir;
+  if(calMonth>11){calMonth=0;calYear++;}
+  if(calMonth<0){calMonth=11;calYear--;}
+  renderCal();
+}
+
+function renderCal(){
+  document.getElementById('iosCalMonth').textContent=MONTHS_UZ[calMonth]+' '+calYear;
+  const today=new Date();today.setHours(0,0,0,0);
+  const checkinVal=document.getElementById('checkin').value;
+  const checkoutVal=document.getElementById('checkout').value;
+  const ciDate=checkinVal?new Date(checkinVal):null;
+  const coDate=checkoutVal?new Date(checkoutVal):null;
+  const firstDay=(new Date(calYear,calMonth,1).getDay()+6)%7; // Mon=0
+  const daysInMonth=new Date(calYear,calMonth+1,0).getDate();
+  let html='';
+  for(let i=0;i<firstDay;i++) html+='<button class="ios-cal-day empty" disabled></button>';
+  for(let d=1;d<=daysInMonth;d++){
+    const date=new Date(calYear,calMonth,d);
+    date.setHours(0,0,0,0);
+    const isPast=date<today;
+    let cls='ios-cal-day';
+    if(date.getTime()===today.getTime())cls+=' today';
+    const minDate=calMode==='checkout'&&ciDate?ciDate:today;
+    const disabled=date<minDate||date<today;
+    if(calSelected&&date.getTime()===calSelected.getTime())cls+=' selected';
+    if(ciDate&&coDate&&date>ciDate&&date<coDate)cls+=' in-range';
+    if(ciDate&&coDate&&date.getTime()===ciDate.getTime())cls+=' range-start';
+    if(ciDate&&coDate&&date.getTime()===coDate.getTime())cls+=' range-end';
+    html+=`<button class="${cls}"${disabled?' disabled':''} onclick="selectDay(${d})">${d}</button>`;
+  }
+  document.getElementById('iosCalDays').innerHTML=html;
+}
+
+function selectDay(d){
+  calSelected=new Date(calYear,calMonth,d);
+  renderCal();
+}
+
+function confirmCal(){
+  if(!calSelected){closeCal();return;}
+  const iso=calSelected.toISOString().split('T')[0];
+  const display=calSelected.getDate()+' '+MONTHS_UZ[calSelected.getMonth()]+' '+calSelected.getFullYear();
+  document.getElementById(calMode).value=iso;
+  const span=document.getElementById(calMode+'Text');
+  span.textContent=display;
+  span.classList.remove('placeholder');
+  // auto-open checkout if checkin just set
+  if(calMode==='checkin'){
+    const co=document.getElementById('checkout').value;
+    if(!co||new Date(co)<=calSelected){
+      document.getElementById('checkout').value='';
+      document.getElementById('checkoutText').textContent='Sana tanlang';
+      document.getElementById('checkoutText').classList.add('placeholder');
+    }
+    closeCal();
+    setTimeout(()=>openCal('checkout'),300);
+  } else {
+    closeCal();
+  }
+}
+
+function handleBooking(){
+  const ci=document.getElementById('checkin').value,co=document.getElementById('checkout').value;
+  if(!ci||!co){alert('Iltimos, kirish va chiqish sanalarini tanlang.');return;}
+  if(new Date(co)<=new Date(ci)){alert("Chiqish sanasi kirishdan keyin bo'lishi kerak.");return;}
+  alert("Rahmat! Broningizni tasdiqlash uchun tez orada siz bilan bog'lanamiz.");}
 </script>
 </body>
 </html>
