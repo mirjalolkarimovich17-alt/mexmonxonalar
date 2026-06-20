@@ -99,6 +99,27 @@ footer{padding:50px 0 28px}
 .footer-bottom p{color:var(--muted);font-size:14px}
 @media(max-width:900px){.two-col,.values-grid{grid-template-columns:1fr}.team-grid{grid-template-columns:1fr 1fr}.stats{grid-template-columns:1fr 1fr}.footer-grid{grid-template-columns:1fr 1fr}.nav-links{display:none}.hamburger{display:flex}.mobile-menu{display:block}}
 @media(max-width:600px){.team-grid{grid-template-columns:1fr 1fr}.footer-grid{grid-template-columns:1fr}.footer-bottom{flex-direction:column;gap:6px}}
+@media(max-width:480px){
+  html,body{overflow-x:hidden;max-width:100vw}
+  *{max-width:100%;box-sizing:border-box}
+  .nav-wrap{padding:10px 12px 0}
+  .nav{padding:10px 14px;border-radius:12px}
+  .brand{font-size:15px}
+  .container{padding:0 16px}
+  .page-hero{padding:50px 0 36px}
+  .page-hero h1{font-size:clamp(28px,8vw,42px)}
+  .page-hero p{font-size:15px}
+  .block{padding:50px 0}
+  .two-col{gap:28px}
+  .values-grid{gap:14px}
+  .team-grid{grid-template-columns:1fr}
+  .stats{gap:14px}
+  .stat h3{font-size:32px}
+  .h2{font-size:clamp(24px,7vw,36px)}
+  .lead{font-size:15px}
+  .footer-grid{gap:24px}
+  .footer-bottom{font-size:13px}
+}
 </style>
 </head>
 <body>
